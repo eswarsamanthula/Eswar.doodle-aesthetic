@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eswar's portfolio — a full-stack developer building tools at the intersection of AI, security, and the web. Explore projects, skills, and get in touch.">
+    <title>Eswar — Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        :root {
+            --bg: #F7F5F1;
+            --fg: #1B1B1B;
+            --fg-muted: #5a5a5a;
+            --border: #1B1B1B;
+            --shadow: rgba(0,0,0,0.12);
+            --card-bg: #ffffff;
+            --nav-bg: rgba(247,245,241,0.92);
+            --accent: #DCE7D4;
+            --accent2: #DDE7F6;
+            --accent3: #F5E8C7;
+        }
+        .dark {
+            --bg: #141414;
+            --fg: #f0ede6;
+            --fg-muted: #888;
+            --border: #f0ede6;
+            --shadow: rgba(255,255,255,0.06);
+            --card-bg: #1e1e1e;
+            --nav-bg: rgba(20,20,20,0.92);
+            --accent: #2a3324;
+            --accent2: #242e38;
+            --accent3: #352e1f;
+        }
+
+        html { scroll-padding-top: 100px; }
+        section[id] { scroll-margin-top: 100px; }
+
+        * { box-sizing: border-box; }
+        section { transition: background-color 0.4s ease; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--fg);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .handwritten { font-family: 'Caveat', cursive; }
+
+        .doodle-border {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 3px 3px 0px var(--shadow);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        #navbar {
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            z-index: 9999;
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+
+        #mobile-menu {
+            background-color: var(--nav-bg);
+            color: var(--fg);
+        }
+        #mobile-menu.open {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0; right: 0;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 3px 3px 0 var(--shadow);
+            backdrop-filter: blur(12px);
+        }
+
+        .doodle-button {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            box-shadow: 3px 3px 0 var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            background: var(--card-bg);
+            color: var(--fg);
+        }
+        .doodle-button:hover {
+            transform: translateY(-3px) translateX(-1px);
+            box-shadow: 5px 5px 0 var(--shadow);
+        }
+        .doodle-button:active {
+            transform: translateY(1px) translateX(1px);
+            box-shadow: 1px 1px 0 var(--shadow);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(-6px); }
+        }
+        .floating { animation: float 6s ease-in-out infinite; }
+
+        .cursor { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .contact-editorial {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .contact-editorial {
+                flex-direction: row;
+                gap: 3rem;
+            }
+            .contact-left { flex: 1; }
+            .contact-right { flex: 1.4; }
+        }
+
+        .contact-left { min-width: 0; }
+
+        .runner-float {
+            float: right;
+            width: 200px;
+            height: auto;
+            margin: 0 0 0.75rem 1.25rem;
+            shape-outside: polygon(
+                28% 0%, 72% 0%, 78% 8%, 82% 18%, 84% 28%,
+                80% 38%, 88% 48%, 94% 62%, 97% 78%, 85% 84%,
+                68% 78%, 48% 72%, 28% 82%, 18% 76%, 22% 60%,
+                32% 48%, 28% 36%, 22% 24%, 28% 14%, 34% 5%
+            );
+            shape-image-threshold: 0.4;
+            shape-margin: 8px;
+        }
+        @media (max-width: 640px) {
+            .runner-float {
+                float: none;
+                display: block;
+                margin: 1.5rem auto 0;
+                width: 140px;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #preloader {
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+        #preloader.loaded {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.08; }
+            50%       { opacity: 0.45; }
+        }
+        .animate-fade-in-out { animation: fadeInOut 1.6s ease-in-out infinite; }
+
+        .form-input {
+            background: var(--bg);
+            color: var(--fg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            width: 100%;
+            padding: 0.65rem 1rem;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: box-shadow 0.2s, border-color 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-input::-webkit-contacts-auto-fill-button,
+        .form-input::-webkit-credentials-auto-fill-button {
+            display: none !important;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        input[type="email"]::-webkit-inner-spin-button { display: none; }
+        .form-input:focus {
+            border-color: var(--fg);
+            box-shadow: 3px 3px 0 var(--border);
+        }
+        .form-input::placeholder { color: var(--fg-muted); opacity: 0.7; }
+
+        .nav-link {
+            color: var(--fg);
+            position: relative;
+            font-weight: 500;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -2px;
+            width: 0; height: 2px;
+            background: var(--fg);
+            transition: width 0.2s;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .resume-btn {
+            background: var(--fg);
+            color: var(--bg);
+            border-radius: 999px;
+            border: 1px solid var(--fg);
+            padding: 6px 18px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 2px 2px 0 var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            white-space: nowrap;
+        }
+        .resume-btn:hover {
+            transform: translateY(-2px) translateX(-1px);
+            box-shadow: 4px 4px 0 var(--shadow);
+        }
+
+        .theme-btn {
+            border-radius: 50%;
+            padding: 6px;
+            transition: background 0.2s;
+        }
+        .theme-btn:hover { background: var(--accent); }
+        .theme-btn svg { stroke: var(--fg); }
+
+        #scrollTop {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            z-index: 40;
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        #scrollTop.show { opacity: 1; pointer-events: all; }
+        #scrollTop svg path { stroke: var(--fg); }
+
+        footer { color: var(--fg-muted); }
+
+        .doodle-divider {
+            text-align: center;
+            font-size: 1.25rem;
+            letter-spacing: 0.5em;
+            opacity: 0.25;
+            padding: 1.5rem 0;
+            user-select: none;
+        }
+
+        .project-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .project-row {
+                grid-template-columns: 1fr 1fr;
+            }
+            .project-row-alt .project-image { order: -1; }
+        }
+
+        .project-number {
+            font-size: 5.5rem;
+            line-height: 1;
+            font-weight: 700;
+            opacity: 0.08;
+            user-select: none;
+        }
+
+        .skill-item {
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.5rem 0;
+        }
+
+        .skill-cat {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 0.75rem 0 0.25rem;
+            opacity: 0.4;
+        }
+
+        .parallax-svg { will-change: transform; }
+
+        .project-number-anim {
+            opacity: 0;
+            transform: translateY(40px) scale(0.8);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .project-number-anim.visible {
+            opacity: 0.1;
+            transform: translateY(0) scale(1);
+        }
+
+        .project-row {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-row img {
+            transition: transform 0.4s ease;
+        }
+        .project-row:hover img {
+            transform: scale(1.05);
+        }
+        .project-row:hover .project-number {
+            letter-spacing: 1px;
+        }
+        .project-row .project-number {
+            transition: letter-spacing 0.3s ease;
+        }
+
+        .doodle-star {
+            display: inline-block;
+            animation: spin-slow 8s linear infinite;
+            font-size: 1rem;
+            opacity: 0.2;
+            user-select: none;
+        }
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ PRELOADER ═══════════════════════════════════ -->
+<div id="preloader" class="fixed inset-0 z-[60] flex items-center justify-center" style="background:var(--bg)">
+    <h1 class="text-6xl sm:text-8xl font-bold handwritten animate-fade-in-out" style="color:var(--fg)">Eswar</h1>
+</div>
+
+<!-- ═══════════════════════════════════ MAIN CONTENT ═══════════════════════════════════ -->
+<div id="main-content" class="invisible opacity-0 transition-opacity duration-700">
+
+    <!-- ── NAVBAR ── -->
+    <nav id="navbar" class="fixed top-3 left-4 right-4 z-50 px-5 py-3 rounded-2xl transition-transform duration-300">
+        <div class="max-w-6xl mx-auto flex items-center">
+            <div class="flex-1 flex justify-start">
+                <a href="/" id="logo-text" class="font-bold text-2xl handwritten" style="color:var(--fg)">Eswar<span class="cursor">_</span></a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 flex-1 justify-center">
+                <a href="#about"    class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#currently" class="nav-link">Now</a>
+                <a href="#skills"   class="nav-link">Skills</a>
+                <a href="#contact"  class="nav-link">Contact</a>
+            </div>
+
+            <div class="flex-1 flex items-center justify-end gap-3">
+                <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+                    <svg id="sunIcon"  class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg id="moonIcon" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                </button>
+                <a href="/resume.pdf" target="_blank" class="resume-btn">Resume ↗</a>
+                <button id="mobile-menu-button" class="md:hidden p-1" aria-label="Menu">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path id="menu-open"   stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                        <path id="menu-close"  stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" class="hidden"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden relative mt-1">
+            <a href="#about"    class="nav-link py-1">About</a>
+            <a href="#projects" class="nav-link py-1">Projects</a>
+            <a href="#currently" class="nav-link py-1">Now</a>
+            <a href="#skills"   class="nav-link py-1">Skills</a>
+            <a href="#contact"  class="nav-link py-1">Contact</a>
+        </div>
+    </nav>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="min-h-screen flex flex-col justify-center items-center py-20 relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center gap-8 w-full">
+            <div class="md:w-2/5 text-center md:text-left">
+                <h1 class="text-5xl md:text-7xl font-bold handwritten leading-tight reveal">
+                    Building things.<br/>
+                    Learning fast.
+                </h1>
+                <p class="text-xl md:text-2xl mt-2 reveal handwritten" style="color:var(--fg-muted)">
+                    Turning ideas into products,<br/>
+                    <span class="inline-block mt-1">one project at a time.</span>
+                </p>
+                <p class="text-lg md:text-xl mt-6 max-w-lg reveal" style="color:var(--fg-muted)">
+                    I build full-stack tools at the intersection of<br/>
+                    AI, security, and the web.
+                </p>
+                <a href="#projects" class="doodle-button inline-block px-8 py-3 mt-8 text-lg font-bold reveal">View Projects ↓</a>
+            </div>
+            <div class="md:w-3/5 flex justify-center md:justify-end -mr-12 reveal parallax-svg" data-speed="0.08">
+                <img src="assets/transhumans/Astro.svg" alt="" class="floating" width="420" height="420">
+            </div>
+        </div>
+    </section>
+
+    <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
+
+    <!-- ═══════ ABOUT ═══════ -->
+    <section class="py-14" id="about" style="background:var(--card-bg)">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center gap-4 mb-8 relative">
+                <span class="doodle-star absolute -left-4 top-0">✦</span>
+                <h2 class="text-4xl md:text-5xl font-bold handwritten reveal">My Journey</h2>
+                <img src="assets/transhumans/Runner.svg" alt="" class="reveal shrink-0" width="120" height="120">
+                <span class="doodle-star absolute -right-4 bottom-0" style="animation-delay:2s">✧</span>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-10">
+                <div class="reveal" data-delay="0">
+                    <h3 class="text-xl font-bold">2015 – 2022</h3>
+                    <p class="text-lg mt-1" style="color:var(--fg-muted)">School — got curious about computers &amp; coding. Started building small projects.</p>
+                </div>
+                <div class="reveal" data-delay="100">
+                    <h3 class="text-xl font-bold">2023</h3>
+                    <p class="text-lg mt-1" style="color:var(--fg-muted)">Started B.Tech CSE at Amrita Vishwa Vidyapeetham, Amritapuri.</p>
+                </div>
+                <div class="reveal" data-delay="200">
+                    <h3 class="text-xl font-bold">2024</h3>
+                    <p class="text-lg mt-1" style="color:var(--fg-muted)">Built StudyGenie (AI study planner), SecurePortal (cybersecurity lab), and hands-on full-stack projects.</p>
+                </div>
+                <div class="reveal relative" data-delay="300">
+                    <h3 class="text-xl font-bold">2025 – Now</h3>
+                    <p class="text-lg mt-1" style="color:var(--fg-muted)">Building Limitless on Supabase/Vercel. Open to internships and collaborations.</p>
+                    <img src="assets/transhumans/Coffee.svg" alt="" class="absolute -top-8 -right-8 hidden md:block" width="100" height="100">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
+
+    <!-- ═══════ STATEMENT ═══════ -->
+    <section class="py-24 text-center overflow-hidden" style="background:var(--bg)">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-bold handwritten leading-[1.1] reveal parallax-svg" data-speed="-0.02" style="font-size:clamp(2.5rem,8vw,6rem)">
+                I learn<br/>
+                <span class="inline-block mt-2">by building.</span>
+            </p>
+            <p class="text-xl md:text-3xl mt-8 handwritten reveal" style="color:var(--fg-muted)">
+                Not just tutorials.<br/>
+                Not just courses.
+            </p>
+            <p class="text-2xl md:text-3xl mt-10 font-bold reveal">
+                Real projects.<br/>
+                Real users.<br/>
+                Real problems.
+            </p>
+        </div>
+    </section>
+
+    <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
+
+    <!-- ═══════ PROJECTS ═══════ -->
+    <section class="py-14" id="projects" style="background:var(--bg)">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center gap-4 mb-10 relative">
+                <span class="doodle-star absolute -left-4 top-0">✧</span>
+                <h2 class="text-4xl md:text-5xl font-bold handwritten reveal">Things I've Built</h2>
+                <img src="assets/transhumans/Astro.svg" alt="" class="reveal shrink-0" width="100" height="100">
+                <span class="doodle-star absolute -right-4 bottom-0" style="animation-delay:3s">✦</span>
+            </div>
+
+            <!-- Project 01 — StudyGenie -->
+            <div class="project-row mb-16 reveal" data-delay="0">
+                <div>
+                    <div class="project-number project-number-anim">01</div>
+                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">StudyGenie</h3>
+                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
+                        500+ study prompts optimized. Built across multiple AI workflows. Shipping features during semester breaks.
+                    </p>
+                    <p class="text-sm italic mt-3" style="color:var(--fg-muted)">
+                        <span class="font-medium">StudyGenie:</span> 500+ prompts tested. Countless late-night debugging sessions.
+                    </p>
+                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Flask · OpenAI · SQLite</p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://studygenie-ai.netlify.app" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
+                        <a href="https://github.com/eswarsamanthula/StudyGenie-AI" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent)">GitHub ↗</a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <img src="assets/transhumans/Waiting.svg" alt="A person waiting — reflecting the patience needed to build StudyGenie" width="280" height="280" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Project 02 — SecurePortal -->
+            <div class="project-row project-row-alt mb-16 reveal" data-delay="100">
+                <div class="flex justify-center">
+                    <img src="assets/transhumans/Mask.svg" alt="A masked figure — representing the security focus of SecurePortal" width="280" height="280" loading="lazy">
+                </div>
+                <div>
+                    <div class="project-number project-number-anim">02</div>
+                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">SecurePortal</h3>
+                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
+                        10+ attack scenarios. Custom SQLi, XSS & brute-force modules. A SOC dashboard that actually works.
+                    </p>
+                    <p class="text-sm italic mt-3" style="color:var(--fg-muted)">
+                        <span class="font-medium">SecurePortal:</span> Built from a single blog post and a lot of trial-and-error.
+                    </p>
+                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Flask · SQLite · Python · Security</p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://secure-student-portal.onrender.com" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
+                        <a href="https://github.com/eswarsamanthula/secure-student-portal" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent3)">GitHub ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 03 — Limitless -->
+            <div class="project-row mb-16 reveal" data-delay="200">
+                <div>
+                    <div class="project-number project-number-anim">03</div>
+                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Limitless</h3>
+                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
+                        Auth, real-time data, clean UI. First full product from idea to deployment on Vercel.
+                    </p>
+                    <p class="text-sm italic mt-3" style="color:var(--fg-muted)">
+                        <span class="font-medium">Limitless:</span> My first full product — from idea to deployment.
+                    </p>
+                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Supabase · Vercel · JavaScript</p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://applimitlessai.vercel.app" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
+                        <a href="https://github.com/eswarsamanthula/Limitless" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent)">GitHub ↗</a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <img src="assets/transhumans/Looking Ahead.svg" alt="Looking toward the future — Limitless is my first full product" width="280" height="280" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Project 04 — Dormsy -->
+            <div class="project-row project-row-alt mb-16 reveal" data-delay="300">
+                <div class="flex justify-center">
+                    <img src="assets/transhumans/Pondering.svg" alt="Pondering the complexities of hostel management" width="280" height="280" loading="lazy">
+                </div>
+                <div>
+                    <div class="project-number project-number-anim">04</div>
+                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Dormsy</h3>
+                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
+                        Full-stack hostel management system with multi-role access, QR attendance, and Stripe payments.
+                    </p>
+                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: React · Node.js · Supabase · Stripe</p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://dormsy-hostel-management-system.vercel.app" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
+                        <a href="https://github.com/eswarsamanthula/Dormsy_Hostel_Management_System" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent2)">GitHub ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 05 — Weather Insight -->
+            <div class="project-row mb-16 reveal" data-delay="400">
+                <div>
+                    <div class="project-number project-number-anim">05</div>
+                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Weather Insight</h3>
+                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
+                        Clean weather dashboard with real-time data, forecasts, and location-based insights.
+                    </p>
+                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: JavaScript · Weather API · Netlify</p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://weather-insight-wed.netlify.app" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
+                        <a href="https://github.com/eswarsamanthula/Weather-Insight-Web" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent)">GitHub ↗</a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <img src="assets/transhumans/Feliz.svg" alt="Happy about building a weather app" width="280" height="280" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Project 06 — Ritual -->
+            <div class="project-row project-row-alt mb-16 reveal" data-delay="500">
+                <div class="flex justify-center">
+                    <img src="assets/transhumans/Jumping.svg" alt="Jumping into new ideas with Ritual" width="280" height="280" loading="lazy">
+                </div>
+                <div>
+                    <div class="project-number project-number-anim">06</div>
+                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Ritual</h3>
+                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
+                        A web app built with a focus on clean UX and fast interactions. Deployed on Vercel.
+                    </p>
+                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: JavaScript · Vercel</p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://ritual-cyan.vercel.app" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
+                        <a href="https://github.com/eswarsamanthula/Ritual" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent3)">GitHub ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 07 — Pixel Blaster -->
+            <div class="project-row mb-16 reveal" data-delay="600">
+                <div>
+                    <div class="project-number project-number-anim">07</div>
+                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Pixel Blaster</h3>
+                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
+                        Retro-style browser game built with HTML, CSS, and JavaScript. Published on GitHub Pages.
+                    </p>
+                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: HTML · CSS · JavaScript</p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://eswarsamanthula.github.io/pixel-blaster-dx" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
+                        <a href="https://github.com/eswarsamanthula/pixel-blaster-dx" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent)">GitHub ↗</a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <img src="assets/transhumans/Gamestation.svg" alt="Gaming-themed Pixel Blaster" width="280" height="280" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
+
+    <!-- ═══════ CURRENTLY ═══════ -->
+    <section class="py-14" id="currently" style="background:var(--card-bg)">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold handwritten reveal mb-10 relative inline-block">
+                Currently
+                <span class="doodle-star absolute -right-8 -top-2">✦</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="reveal" data-delay="0">
+                    <span class="text-4xl">📚</span>
+                    <h3 class="text-xl font-bold mt-3">Learning</h3>
+                    <p class="mt-2 text-lg" style="color:var(--fg-muted)">Advanced Flask<br/>System Design</p>
+                </div>
+                <div class="reveal" data-delay="100">
+                    <span class="text-4xl">⚡</span>
+                    <h3 class="text-xl font-bold mt-3">Building</h3>
+                    <p class="mt-2 text-lg" style="color:var(--fg-muted)">Limitless<br/>Open-source tools</p>
+                </div>
+                <div class="reveal" data-delay="200">
+                    <span class="text-4xl">🎯</span>
+                    <h3 class="text-xl font-bold mt-3">Looking for</h3>
+                    <p class="mt-2 text-lg" style="color:var(--fg-muted)">Internships<br/>Collaborations</p>
+                </div>
+            </div>
+            <p class="text-sm italic mt-8 reveal" style="color:var(--fg-muted); opacity:0.6">What I'm exploring right now.</p>
+        </div>
+    </section>
+
+    <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
+
+    <!-- ═══════ SKILLS ═══════ -->
+    <section class="py-14" id="skills" style="background:var(--card-bg)">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center gap-4 mb-10 relative">
+                <span class="doodle-star absolute -left-4 top-0">✦</span>
+                <h2 class="text-4xl md:text-5xl font-bold handwritten reveal">What I Use</h2>
+                <img src="assets/transhumans/Roboto.svg" alt="" class="reveal shrink-0" width="100" height="100">
+                <span class="doodle-star absolute -right-4 bottom-0" style="animation-delay:1.5s">✧</span>
+            </div>
+
+            <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-8 reveal">
+                <div>
+                    <h4 class="skill-cat">Frontend</h4>
+                    <div class="skill-item">HTML</div>
+                    <div class="skill-item">CSS</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">React</div>
+                </div>
+                <div>
+                    <h4 class="skill-cat">Backend</h4>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Flask</div>
+                    <div class="skill-item">Node.js</div>
+                </div>
+                <div>
+                    <h4 class="skill-cat">Tools</h4>
+                    <div class="skill-item">Git</div>
+                    <div class="skill-item">Supabase</div>
+                    <div class="skill-item">Figma</div>
+                </div>
+                <div>
+                    <h4 class="skill-cat">Interests</h4>
+                    <div class="skill-item">AI / ML</div>
+                    <div class="skill-item">Cybersecurity</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
+
+    <!-- ═══════ CONTACT ═══════ -->
+    <section class="py-14" id="contact" style="background:var(--bg)">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center gap-4 mb-8 relative">
+                <span class="doodle-star absolute -left-4 top-0">✧</span>
+                <h2 class="text-4xl md:text-5xl font-bold handwritten reveal">
+                    Have an idea?<br/>
+                    <span class="text-2xl md:text-3xl" style="color:var(--fg-muted)">Let's build it together.</span>
+                </h2>
+                <img src="assets/transhumans/Puppy.svg" alt="" class="reveal shrink-0" width="100" height="100">
+                <span class="doodle-star absolute -right-4 bottom-0" style="animation-delay:2.5s">✦</span>
+            </div>
+
+            <div class="rounded-2xl p-8 md:p-12" style="background:var(--card-bg); border:1px solid var(--border)">
+                <div class="contact-editorial">
+                    <div class="contact-left">
+                        <p class="text-lg reveal" style="color:var(--fg-muted)">
+                            Open to internships,<br/>
+                            collaborations,<br/>
+                            and interesting projects.
+                        </p>
+                        <p class="mt-6 handwritten text-2xl font-bold reveal" style="color:var(--fg-muted)">— Eswar 👋</p>
+
+                        <div class="mt-6 space-y-3 text-sm reveal" style="color:var(--fg-muted); display:flow-root">
+                            <img src="assets/transhumans/Gamestation.svg" alt="" class="runner-float" width="220" height="220">
+                            <p><span class="text-base">🟢</span> Available for internships</p>
+                            <div>
+                                <p class="font-bold handwritten text-lg mt-3">📚 Learning</p>
+                                <p class="ml-1">System Design</p>
+                            </div>
+                            <div>
+                                <p class="font-bold handwritten text-lg mt-3">⚡ Building</p>
+                                <p class="ml-1">Limitless AI</p>
+                            </div>
+                            <div>
+                                <p class="font-bold handwritten text-lg mt-3">🎯 Open to</p>
+                                <p class="ml-1">Collaborations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-right reveal">
+                        <form id="contact-form" class="space-y-4">
+                            <input type="hidden" name="contact_number">
+                            <div>
+                                <label class="block text-sm font-medium mb-1" for="cf-name">Your Name</label>
+                                <input id="cf-name" name="from_name" type="text" placeholder="Your name" class="form-input" autocomplete="name" required/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1" for="cf-email">Your Email</label>
+                                <input id="cf-email" name="from_email" type="email" placeholder="your@email.com" class="form-input" autocomplete="email" required/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1" for="cf-message">Your Message</label>
+                                <textarea id="cf-message" name="message" rows="4" placeholder="Hey, I'd love to collab on..." class="form-input resize-none" required></textarea>
+                            </div>
+                            <button id="cf-send" type="submit" class="doodle-button w-full py-3 font-bold text-base">
+                                Send Message →
+                            </button>
+                            <p id="cf-status" class="text-sm hidden font-medium" style="color:var(--fg-muted)"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="py-10 text-center" style="background:var(--card-bg); border-top:1px solid var(--border);">
+        <p class="handwritten text-2xl reveal" style="color:var(--fg-muted)">
+            Still learning.<br/>Still building.<br/>Still curious.
+        </p>
+        <div class="flex items-center justify-center gap-4 mt-6 mb-4">
+            <a href="https://linkedin.com/in/eswarsamanthula" target="_blank" aria-label="LinkedIn" style="color:var(--fg-muted)">
+                <svg focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="2" y="9" width="4" height="12" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="4" cy="4" r="2"/>
+                </svg>
+            </a>
+            <a href="https://github.com/eswarsamanthula" target="_blank" aria-label="GitHub" style="color:var(--fg-muted)">
+                <svg focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <a href="mailto:eswarsamanthula@gmail.com" aria-label="Email" style="color:var(--fg-muted)">
+                <svg focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="22,6 12,13 2,6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <a href="https://hub.docker.com/u/eswarsamanthula" target="_blank" aria-label="Docker Hub" style="color:var(--fg-muted)">
+                <svg focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1"  y="9" width="4" height="4" rx="0.5" stroke-linecap="round"/>
+                    <rect x="6"  y="9" width="4" height="4" rx="0.5" stroke-linecap="round"/>
+                    <rect x="11" y="9" width="4" height="4" rx="0.5" stroke-linecap="round"/>
+                    <rect x="6"  y="4" width="4" height="4" rx="0.5" stroke-linecap="round"/>
+                    <rect x="11" y="4" width="4" height="4" rx="0.5" stroke-linecap="round"/>
+                    <path d="M21.8 10.5c-.4-2-2.1-2.7-3.3-2.5-.5-1.8-2.3-2.5-3.7-.5H2.5A1.5 1.5 0 0 0 1 9c0 4 2.7 7 6 7.5h8c2.8-.4 5-3 5-6 0 0 1.8 0 1.8-1.5z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+        <p class="text-xs leading-relaxed" style="color:var(--fg-muted); opacity:0.5">
+            Built with HTML, CSS, JavaScript and lots of coffee.
+        </p>
+        <p class="text-xs mt-1" style="color:var(--fg-muted); opacity:0.35">© 2025 Eswar</p>
+    </footer>
+
+</div><!-- /main-content -->
+
+<!-- ── Scroll to top ── -->
+<button id="scrollTop" class="doodle-button w-11 h-11" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke="var(--fg)">
+        <path d="M18 15l-6-6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</button>
+
+<script>
+// ── Theme ──────────────────────────────────────────────
+const themeToggle = document.getElementById('themeToggle');
+const sunIcon     = document.getElementById('sunIcon');
+const moonIcon    = document.getElementById('moonIcon');
+const html        = document.documentElement;
+
+function applyTheme(dark) {
+    if (dark) {
+        html.classList.add('dark');
+        document.body.classList.add('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+    } else {
+        html.classList.remove('dark');
+        document.body.classList.remove('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+}
+const saved = localStorage.getItem('theme') || 'light';
+applyTheme(saved === 'dark');
+
+themeToggle.addEventListener('click', () => {
+    const isDark = !document.body.classList.contains('dark');
+    applyTheme(isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
+// ── Mobile menu ────────────────────────────────────────
+const mobileBtn   = document.getElementById('mobile-menu-button');
+const mobileMenu  = document.getElementById('mobile-menu');
+const menuOpen    = document.getElementById('menu-open');
+const menuClose   = document.getElementById('menu-close');
+
+mobileBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    mobileMenu.classList.toggle('open', !isOpen);
+    mobileMenu.classList.toggle('hidden', isOpen);
+    menuOpen.classList.toggle('hidden', !isOpen);
+    menuClose.classList.toggle('hidden', isOpen);
+});
+
+mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        mobileMenu.classList.add('hidden');
+        menuOpen.classList.remove('hidden');
+        menuClose.classList.add('hidden');
+    });
+});
+
+// ── Parallax on scroll ──────────────────────────────
+window.addEventListener('scroll', () => {
+    document.querySelectorAll('.parallax-svg').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const speed = parseFloat(el.dataset.speed) || 0.05;
+        el.style.transform = `translateY(${rect.top * speed}px)`;
+    });
+});
+
+// ── Navbar hide/show on scroll ────────────────────────
+let lastScroll = 0;
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    const cur = window.pageYOffset;
+    navbar.style.transform = (cur > lastScroll && cur > 80) ? 'translateY(-120%)' : 'translateY(0)';
+    lastScroll = cur;
+
+    document.getElementById('scrollTop').classList.toggle('show', cur > 400);
+});
+
+// ── Intersection observers ────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    setTimeout(() => {
+                        e.target.classList.add('visible');
+                    }, parseInt(e.target.dataset.delay) || 0);
+                    revealObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal, .project-number-anim').forEach(el => revealObs.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+});
+
+// ── Preloader ─────────────────────────────────────────
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('preloader').classList.add('loaded');
+        const mc = document.getElementById('main-content');
+        mc.classList.remove('invisible');
+        mc.classList.add('opacity-100');
+    }, 1000);
+});
+
+// ── EmailJS ──────────────────────────────────────────
+(function() {
+    emailjs.init('q8c1AgavyQtt8aPYS');
+})();
+
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('cf-send');
+    const status = document.getElementById('cf-status');
+    const orig = btn.textContent;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    status.classList.add('hidden');
+
+    const params = {
+        user_name: document.getElementById('cf-name').value,
+        user_email: document.getElementById('cf-email').value,
+        message: document.getElementById('cf-message').value
+    };
+    emailjs.send('service_4i3nbxz', 'template_gaz6a83', params)
+        .then(() => {
+            status.textContent = '✅ Message sent! I\'ll get back to you soon.';
+            status.className = 'text-sm font-medium';
+            status.style.color = 'var(--fg-muted)';
+            status.classList.remove('hidden');
+            document.getElementById('contact-form').reset();
+        })
+        .catch((err) => {
+            console.error('EmailJS error:', err);
+            status.textContent = '⚠️ ' + (err.text || 'Something went wrong. Try emailing me directly.');
+            status.className = 'text-sm font-medium';
+            status.style.color = 'var(--fg-muted)';
+            status.classList.remove('hidden');
+        })
+        .finally(() => {
+            btn.textContent = orig;
+            btn.disabled = false;
+        });
+});
+</script>
+</body>
+</html>
