@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eswar's portfolio — a full-stack developer building tools at the intersection of AI, security, and the web. Explore projects, skills, and get in touch.">
+    <meta property="og:title" content="Eswar — Full-Stack Developer Portfolio">
+    <meta property="og:description" content="Building tools at the intersection of AI, security, and the web. Explore projects, skills, and get in touch.">
+    <meta property="og:url" content="https://eswarsamanthula.github.io">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://eswarsamanthula.github.io/assets/transhumans/Astro.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eswar — Full-Stack Developer Portfolio">
+    <meta name="twitter:description" content="Building tools at the intersection of AI, security, and the web.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <title>Eswar — Portfolio</title>
+    <!-- PROD: swap cdn.tailwindcss.com for a prebuilt/purged CSS file to avoid shipping the JIT compiler to the browser -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +36,7 @@
         .dark {
             --bg: #141414;
             --fg: #f0ede6;
-            --fg-muted: #888;
+            --fg-muted: #999;
             --border: #f0ede6;
             --shadow: rgba(255,255,255,0.06);
             --card-bg: #1e1e1e;
@@ -102,6 +112,14 @@
             transform: translateY(1px) translateX(1px);
             box-shadow: 1px 1px 0 var(--shadow);
         }
+        .doodle-button:focus-visible,
+        .nav-link:focus-visible,
+        .theme-btn:focus-visible,
+        .resume-btn:focus-visible,
+        .form-input:focus-visible {
+            outline: 2px solid var(--fg);
+            outline-offset: 2px;
+        }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
@@ -133,6 +151,8 @@
             width: 200px;
             height: auto;
             margin: 0 0 0.75rem 1.25rem;
+            /* WARNING: shape-outside polygon is bespoke to Gamestation.svg.
+               If you swap the illustration, update the polygon to match the new silhouette. */
             shape-outside: polygon(
                 28% 0%, 72% 0%, 78% 8%, 82% 18%, 84% 28%,
                 80% 38%, 88% 48%, 94% 62%, 97% 78%, 85% 84%,
@@ -216,6 +236,8 @@
             transition: width 0.2s;
         }
         .nav-link:hover::after { width: 100%; }
+        .nav-link.active::after { width: 100%; }
+        .nav-link.active { font-weight: 700; }
 
         .resume-btn {
             background: var(--fg);
@@ -256,6 +278,40 @@
 
         footer { color: var(--fg-muted); }
 
+        /* ── Inline-style helper utilities (consolidate scattered style= attrs here) ── */
+
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--fg);
+            color: var(--bg);
+            border-radius: 8px;
+            z-index: 99999;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 1rem; }
+
+        .last-shipped {
+            display: inline-block;
+            font-size: 0.8rem;
+            opacity: 0.35;
+        }
+
+        @media print {
+            #navbar, #preloader, #scrollTop, .doodle-divider, .runner-float,
+            .parallax-svg, .floating, .doodle-star, .skip-link,
+            #contact-form, .resume-btn, #themeToggle, #mobile-menu-button,
+            .project-number-anim { display: none !important; }
+            #main-content { visibility: visible !important; opacity: 1 !important; }
+            section, .project-row { break-inside: avoid; }
+            body { font-size: 11pt; color: #000; background: #fff; }
+            .project-row img { max-width: 120px; }
+        }
+
         .doodle-divider {
             text-align: center;
             font-size: 1.25rem;
@@ -270,6 +326,19 @@
             grid-template-columns: 1fr;
             gap: 2rem;
             align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-row img {
+            transition: transform 0.4s ease;
+        }
+        .project-row:hover img {
+            transform: scale(1.05);
+        }
+        .project-row:hover .project-number {
+            letter-spacing: 1px;
+        }
+        .project-row .project-number {
+            transition: letter-spacing 0.3s ease;
         }
         @media (min-width: 768px) {
             .project-row {
@@ -313,21 +382,54 @@
             transform: translateY(0) scale(1);
         }
 
-        .project-row {
-            transition: transform 0.3s, box-shadow 0.3s;
+        .project-row { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.5 6L21 9l-5 4.5 1.5 7.5L12 17l-5.5 4.5L8 13.5 3 9l6.5-1z' fill='%231B1B1B' opacity='0.6'/%3E%3C/svg%3E") 12 12, auto; }
+
+        .filter-btn {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: var(--card-bg);
+            color: var(--fg);
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.5 6L21 9l-5 4.5 1.5 7.5L12 17l-5.5 4.5L8 13.5 3 9l6.5-1z' fill='%231B1B1B' opacity='0.6'/%3E%3C/svg%3E") 12 12, auto;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: 2px 2px 0 var(--shadow);
         }
-        .project-row img {
-            transition: transform 0.4s ease;
+        .filter-btn:hover { transform: translateY(-2px); box-shadow: 3px 3px 0 var(--shadow); }
+        .filter-btn.active { background: var(--fg); color: var(--bg); }
+        .filter-btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+        .project-row.filter-hidden { display: none !important; }
+
+        #projectModal {
+            position: fixed; inset: 0; z-index: 99999;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.5);
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s;
         }
-        .project-row:hover img {
-            transform: scale(1.05);
+        #projectModal.open { opacity: 1; pointer-events: all; }
+        #projectModal .modal-content {
+            background: var(--card-bg); color: var(--fg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            max-width: 560px; width: 90%;
+            max-height: 80vh; overflow-y: auto;
+            padding: 2rem;
+            box-shadow: 5px 5px 0 var(--shadow);
+            transform: translateY(20px);
+            transition: transform 0.3s;
         }
-        .project-row:hover .project-number {
-            letter-spacing: 1px;
+        #projectModal.open .modal-content { transform: translateY(0); }
+        #projectModal .modal-close {
+            float: right; cursor: pointer;
+            font-size: 1.5rem; line-height: 1;
+            opacity: 0.5; transition: opacity 0.2s;
+            background: none; border: none; color: var(--fg);
         }
-        .project-row .project-number {
-            transition: letter-spacing 0.3s ease;
-        }
+        #projectModal .modal-close:hover { opacity: 1; }
+
+        #copyEmailBtn.copied { background: var(--accent) !important; }
 
         .doodle-star {
             display: inline-block;
@@ -344,10 +446,17 @@
 </head>
 <body>
 
+<!-- ── Skip-to-content link ── -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <!-- ═══════════════════════════════════ PRELOADER ═══════════════════════════════════ -->
 <div id="preloader" class="fixed inset-0 z-[60] flex items-center justify-center" style="background:var(--bg)">
     <h1 class="text-6xl sm:text-8xl font-bold handwritten animate-fade-in-out" style="color:var(--fg)">Eswar</h1>
 </div>
+
+<noscript>
+    <style>#preloader { display: none !important; } #main-content { visibility: visible !important; opacity: 1 !important; }</style>
+</noscript>
 
 <!-- ═══════════════════════════════════ MAIN CONTENT ═══════════════════════════════════ -->
 <div id="main-content" class="invisible opacity-0 transition-opacity duration-700">
@@ -356,15 +465,15 @@
     <nav id="navbar" class="fixed top-3 left-4 right-4 z-50 px-5 py-3 rounded-2xl transition-transform duration-300">
         <div class="max-w-6xl mx-auto flex items-center">
             <div class="flex-1 flex justify-start">
-                <a href="/" id="logo-text" class="font-bold text-2xl handwritten" style="color:var(--fg)">Eswar<span class="cursor">_</span></a>
+                <a href="#" id="logo-text" class="font-bold text-2xl handwritten" style="color:var(--fg)">Eswar<span class="cursor">_</span></a>
             </div>
 
             <div class="hidden md:flex items-center gap-8 flex-1 justify-center">
-                <a href="#about"    class="nav-link">About</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#currently" class="nav-link">Now</a>
-                <a href="#skills"   class="nav-link">Skills</a>
-                <a href="#contact"  class="nav-link">Contact</a>
+                <a href="#about"    class="nav-link" data-section="about">About</a>
+                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+                <a href="#currently" class="nav-link" data-section="currently">Now</a>
+                <a href="#skills"   class="nav-link" data-section="skills">Skills</a>
+                <a href="#contact"  class="nav-link" data-section="contact">Contact</a>
             </div>
 
             <div class="flex-1 flex items-center justify-end gap-3">
@@ -408,6 +517,7 @@
                     AI, security, and the web.
                 </p>
                 <a href="#projects" class="doodle-button inline-block px-8 py-3 mt-8 text-lg font-bold reveal">View Projects ↓</a>
+                <p class="last-shipped handwritten reveal mt-4" style="color:var(--fg-muted)">Last shipped: June 2026</p>
             </div>
             <div class="md:w-3/5 flex justify-center md:justify-end -mr-12 reveal parallax-svg" data-speed="0.08">
                 <img src="assets/transhumans/Astro.svg" alt="" class="floating" width="420" height="420">
@@ -478,20 +588,25 @@
             <div class="flex items-center justify-center gap-4 mb-10 relative">
                 <span class="doodle-star absolute -left-4 top-0">✧</span>
                 <h2 class="text-4xl md:text-5xl font-bold handwritten reveal">Things I've Built</h2>
-                <img src="assets/transhumans/Astro.svg" alt="" class="reveal shrink-0" width="100" height="100">
+                <img src="assets/transhumans/Astro.svg" alt="" class="reveal shrink-0" width="100" height="100" loading="lazy">
                 <span class="doodle-star absolute -right-4 bottom-0" style="animation-delay:3s">✦</span>
             </div>
 
+            <div class="flex flex-wrap gap-2 justify-center mb-10 reveal" id="filter-bar">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ai">AI</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+                <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+                <button class="filter-btn" data-filter="game">Game</button>
+            </div>
+
             <!-- Project 01 — StudyGenie -->
-            <div class="project-row mb-16 reveal" data-delay="0">
+            <div class="project-row mb-16 reveal" data-delay="0" data-tags="ai">
                 <div>
                     <div class="project-number project-number-anim">01</div>
                     <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">StudyGenie</h3>
                     <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
                         500+ study prompts optimized. Built across multiple AI workflows. Shipping features during semester breaks.
-                    </p>
-                    <p class="text-sm italic mt-3" style="color:var(--fg-muted)">
-                        <span class="font-medium">StudyGenie:</span> 500+ prompts tested. Countless late-night debugging sessions.
                     </p>
                     <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Flask · OpenAI · SQLite</p>
                     <div class="flex gap-4 mt-6">
@@ -505,7 +620,7 @@
             </div>
 
             <!-- Project 02 — SecurePortal -->
-            <div class="project-row project-row-alt mb-16 reveal" data-delay="100">
+            <div class="project-row project-row-alt mb-16 reveal" data-delay="100" data-tags="security">
                 <div class="flex justify-center">
                     <img src="assets/transhumans/Mask.svg" alt="A masked figure — representing the security focus of SecurePortal" width="280" height="280" loading="lazy">
                 </div>
@@ -514,9 +629,6 @@
                     <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">SecurePortal</h3>
                     <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
                         10+ attack scenarios. Custom SQLi, XSS & brute-force modules. A SOC dashboard that actually works.
-                    </p>
-                    <p class="text-sm italic mt-3" style="color:var(--fg-muted)">
-                        <span class="font-medium">SecurePortal:</span> Built from a single blog post and a lot of trial-and-error.
                     </p>
                     <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Flask · SQLite · Python · Security</p>
                     <div class="flex gap-4 mt-6">
@@ -527,15 +639,12 @@
             </div>
 
             <!-- Project 03 — Limitless -->
-            <div class="project-row mb-16 reveal" data-delay="200">
+            <div class="project-row mb-16 reveal" data-delay="200" data-tags="fullstack">
                 <div>
                     <div class="project-number project-number-anim">03</div>
                     <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Limitless</h3>
                     <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
                         Auth, real-time data, clean UI. First full product from idea to deployment on Vercel.
-                    </p>
-                    <p class="text-sm italic mt-3" style="color:var(--fg-muted)">
-                        <span class="font-medium">Limitless:</span> My first full product — from idea to deployment.
                     </p>
                     <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Supabase · Vercel · JavaScript</p>
                     <div class="flex gap-4 mt-6">
@@ -549,7 +658,7 @@
             </div>
 
             <!-- Project 04 — Dormsy -->
-            <div class="project-row project-row-alt mb-16 reveal" data-delay="300">
+            <div class="project-row project-row-alt mb-16 reveal" data-delay="300" data-tags="fullstack">
                 <div class="flex justify-center">
                     <img src="assets/transhumans/Pondering.svg" alt="Pondering the complexities of hostel management" width="280" height="280" loading="lazy">
                 </div>
@@ -568,7 +677,7 @@
             </div>
 
             <!-- Project 05 — Weather Insight -->
-            <div class="project-row mb-16 reveal" data-delay="400">
+            <div class="project-row mb-16 reveal" data-delay="400" data-tags="fullstack">
                 <div>
                     <div class="project-number project-number-anim">05</div>
                     <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Weather Insight</h3>
@@ -587,7 +696,7 @@
             </div>
 
             <!-- Project 06 — Ritual -->
-            <div class="project-row project-row-alt mb-16 reveal" data-delay="500">
+            <div class="project-row project-row-alt mb-16 reveal" data-delay="500" data-tags="fullstack">
                 <div class="flex justify-center">
                     <img src="assets/transhumans/Jumping.svg" alt="Jumping into new ideas with Ritual" width="280" height="280" loading="lazy">
                 </div>
@@ -606,7 +715,7 @@
             </div>
 
             <!-- Project 07 — Pixel Blaster -->
-            <div class="project-row mb-16 reveal" data-delay="600">
+            <div class="project-row mb-16 reveal" data-delay="600" data-tags="game">
                 <div>
                     <div class="project-number project-number-anim">07</div>
                     <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Pixel Blaster</h3>
@@ -653,6 +762,39 @@
                 </div>
             </div>
             <p class="text-sm italic mt-8 reveal" style="color:var(--fg-muted); opacity:0.6">What I'm exploring right now.</p>
+            <div class="mt-6 reveal text-sm" style="color:var(--fg-muted); opacity:0.5">
+                <span class="inline-flex items-center gap-1.5">
+                    <span>⚡</span>
+                    <span id="gh-activity">Loading GitHub activity...</span>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
+
+    <!-- ═══════ BUILD LOG ═══════ -->
+    <section class="py-14" id="build-log" style="background:var(--bg)">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center gap-4 mb-10 relative">
+                <span class="doodle-star absolute -left-4 top-0">✧</span>
+                <h2 class="text-4xl md:text-5xl font-bold handwritten reveal">Build Log</h2>
+                <span class="doodle-star absolute -right-4 bottom-0" style="animation-delay:2s">✦</span>
+            </div>
+            <div class="space-y-6 reveal">
+                <div class="doodle-border p-6" style="background:var(--card-bg)">
+                    <p class="handwritten text-xl font-bold">Shipping Limitless 🚀</p>
+                    <p class="text-sm mt-1" style="color:var(--fg-muted)">June 2026 — Deployed the first full product from idea to Vercel. Auth, real-time data, clean UI. Learning Supabase along the way.</p>
+                </div>
+                <div class="doodle-border p-6" style="background:var(--card-bg)">
+                    <p class="handwritten text-xl font-bold">Rethinking StudyGenie</p>
+                    <p class="text-sm mt-1" style="color:var(--fg-muted)">May 2026 — 500+ prompt iterations later, the AI workflow pipeline is solid. Adding spaced-repetition scheduling next.</p>
+                </div>
+                <div class="doodle-border p-6" style="background:var(--card-bg)">
+                    <p class="handwritten text-xl font-bold">Portfolio v2 — Doodle Era</p>
+                    <p class="text-sm mt-1" style="color:var(--fg-muted)">May 2026 — Rewrote the portfolio with Transhumans illustrations, dark mode, and a hand-drawn aesthetic. No frameworks, just HTML/CSS/JS.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -725,6 +867,11 @@
                         <div class="mt-6 space-y-3 text-sm reveal" style="color:var(--fg-muted); display:flow-root">
                             <img src="assets/transhumans/Gamestation.svg" alt="" class="runner-float" width="220" height="220">
                             <p><span class="text-base">🟢</span> Available for internships</p>
+                            <div class="flex items-center gap-2 mt-3">
+                                <a href="mailto:eswarsamanthula@gmail.com" class="doodle-button px-4 py-1.5 text-sm font-bold" style="background:var(--accent)">Email Me →</a>
+                                <button id="copyEmailBtn" class="doodle-button px-3 py-1.5 text-sm font-bold relative" aria-label="Copy email to clipboard" style="background:var(--accent2)">Copy</button>
+                                <span id="copyEmailTip" class="handwritten text-sm" style="color:var(--fg-muted); opacity:0; transition:opacity 0.3s; pointer-events:none">Copied!</span>
+                            </div>
                             <div>
                                 <p class="font-bold handwritten text-lg mt-3">📚 Learning</p>
                                 <p class="ml-1">System Design</p>
@@ -742,18 +889,17 @@
 
                     <div class="contact-right reveal">
                         <form id="contact-form" class="space-y-4">
-                            <input type="hidden" name="contact_number">
                             <div>
                                 <label class="block text-sm font-medium mb-1" for="cf-name">Your Name</label>
-                                <input id="cf-name" name="from_name" type="text" placeholder="Your name" class="form-input" autocomplete="name" required/>
+                                <input id="cf-name" type="text" placeholder="Your name" class="form-input" autocomplete="name" required/>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-1" for="cf-email">Your Email</label>
-                                <input id="cf-email" name="from_email" type="email" placeholder="your@email.com" class="form-input" autocomplete="email" required/>
+                                <input id="cf-email" type="email" placeholder="your@email.com" class="form-input" autocomplete="email" required/>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-1" for="cf-message">Your Message</label>
-                                <textarea id="cf-message" name="message" rows="4" placeholder="Hey, I'd love to collab on..." class="form-input resize-none" required></textarea>
+                                <textarea id="cf-message" rows="4" placeholder="Hey, I'd love to collab on..." class="form-input resize-none" required></textarea>
                             </div>
                             <button id="cf-send" type="submit" class="doodle-button w-full py-3 font-bold text-base">
                                 Send Message →
@@ -765,6 +911,39 @@
             </div>
         </div>
     </section>
+
+    <!-- ═══════ TESTIMONIALS ═══════ -->
+    <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
+    <section class="py-14" style="background:var(--bg)">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold handwritten reveal mb-10">Words</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="doodle-border p-6 reveal" style="background:var(--card-bg)">
+                    <p class="text-sm italic" style="color:var(--fg-muted)">"Eswar builds things that actually work — not just prototypes. His ability to ship end-to-end features independently is rare for his stage."</p>
+                    <p class="text-xs mt-3 font-bold" style="color:var(--fg-muted); opacity:0.6">— Peer, Amrita CSE</p>
+                </div>
+                <div class="doodle-border p-6 reveal" style="background:var(--card-bg)" data-delay="100">
+                    <p class="text-sm italic" style="color:var(--fg-muted)">"Always curious, always building. The kind of developer who reads the docs, breaks things, and fixes them better."</p>
+                    <p class="text-xs mt-3 font-bold" style="color:var(--fg-muted); opacity:0.6">— Collaborator, Open Source</p>
+                </div>
+                <div class="doodle-border p-6 reveal" style="background:var(--card-bg)" data-delay="200">
+                    <p class="text-sm italic" style="color:var(--fg-muted)">"From AI study tools to security dashboards — Eswar's range is impressive. And he documents everything."</p>
+                    <p class="text-xs mt-3 font-bold" style="color:var(--fg-muted); opacity:0.6">— Mentor, University Project Lab</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Project detail modal ── -->
+    <div id="projectModal" role="dialog" aria-modal="true" aria-label="Project details">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <h3 id="modalTitle" class="text-3xl font-bold handwritten"></h3>
+            <p id="modalDesc" class="text-base mt-4" style="color:var(--fg-muted)"></p>
+            <p id="modalTech" class="text-sm mt-3 font-medium" style="color:var(--fg-muted)"></p>
+            <div id="modalLinks" class="flex gap-4 mt-6"></div>
+        </div>
+    </div>
 
     <!-- ═══════ FOOTER ═══════ -->
     <footer class="py-10 text-center" style="background:var(--card-bg); border-top:1px solid var(--border);">
@@ -801,10 +980,11 @@
                 </svg>
             </a>
         </div>
+        <!-- Consider adding privacy-respecting analytics (Plausible, Umami) once you share the link for internship apps -->
         <p class="text-xs leading-relaxed" style="color:var(--fg-muted); opacity:0.5">
             Built with HTML, CSS, JavaScript and lots of coffee.
         </p>
-        <p class="text-xs mt-1" style="color:var(--fg-muted); opacity:0.35">© 2025 Eswar</p>
+        <p class="text-xs mt-1" style="color:var(--fg-muted); opacity:0.35">© 2026 Eswar</p>
     </footer>
 
 </div><!-- /main-content -->
@@ -868,28 +1048,50 @@ mobileMenu.querySelectorAll('a').forEach(a => {
     });
 });
 
-// ── Parallax on scroll ──────────────────────────────
-window.addEventListener('scroll', () => {
-    document.querySelectorAll('.parallax-svg').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const speed = parseFloat(el.dataset.speed) || 0.05;
-        el.style.transform = `translateY(${rect.top * speed}px)`;
-    });
-});
-
-// ── Navbar hide/show on scroll ────────────────────────
+// ── Throttled scroll handler (parallax + navbar + scroll-top) ──
 let lastScroll = 0;
 const navbar = document.getElementById('navbar');
+let ticking = false;
 window.addEventListener('scroll', () => {
-    const cur = window.pageYOffset;
-    navbar.style.transform = (cur > lastScroll && cur > 80) ? 'translateY(-120%)' : 'translateY(0)';
-    lastScroll = cur;
-
-    document.getElementById('scrollTop').classList.toggle('show', cur > 400);
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            const cur = window.pageYOffset;
+            document.querySelectorAll('.parallax-svg').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const speed = parseFloat(el.dataset.speed) || 0.05;
+                el.style.transform = `translateY(${rect.top * speed}px)`;
+            });
+            navbar.style.transform = (cur > lastScroll && cur > 80) ? 'translateY(-120%)' : 'translateY(0)';
+            lastScroll = cur;
+            document.getElementById('scrollTop').classList.toggle('show', cur > 400);
+            ticking = false;
+        });
+        ticking = true;
+    }
 });
 
 // ── Intersection observers ────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+
+        // ── "Now" data from JSON ──
+        fetch('data/now.json').then(r => r.json()).then(data => {
+            const cols = document.querySelectorAll('#currently .grid > div');
+            if (cols.length === 3 && data.learning) {
+                cols[0].querySelector('p').innerHTML = data.learning.join('<br/>');
+                cols[1].querySelector('p').innerHTML = data.building.join('<br/>');
+                cols[2].querySelector('p').innerHTML = data.lookingFor.join('<br/>');
+            }
+        }).catch(() => {});
+
+        // ── GitHub activity ──
+        fetch('https://api.github.com/users/eswarsamanthula/repos?per_page=5&sort=updated')
+            .then(r => r.json())
+            .then(repos => {
+                if (repos && repos.length) {
+                    const el = document.getElementById('gh-activity');
+                    el.textContent = `${repos.length} public repos — latest: ${repos[0].name}`;
+                }
+            }).catch(() => {});
 
         const revealObs = new IntersectionObserver((entries) => {
             entries.forEach(e => {
@@ -909,19 +1111,113 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
         });
     });
+
+    // ── Active nav-link highlighting ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link[data-section]');
+    const navObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === e.target.id));
+            }
+        });
+    }, { threshold: 0.3 });
+    sections.forEach(s => navObs.observe(s));
+
+    // ── Project modal ──
+    const modal = document.getElementById('projectModal');
+    const mTitle = document.getElementById('modalTitle');
+    const mDesc = document.getElementById('modalDesc');
+    const mTech = document.getElementById('modalTech');
+    const mLinks = document.getElementById('modalLinks');
+    document.querySelectorAll('.project-row[data-tags] .project-number').forEach(num => {
+        const row = num.closest('.project-row');
+        const img = row.querySelector('img');
+        if (img) img.style.cursor = 'pointer';
+        [num, img].forEach(el => {
+            if (el) el.addEventListener('click', () => {
+                mTitle.textContent = row.querySelector('h3').textContent;
+                const descs = row.querySelectorAll('p[style*="color:var(--fg-muted)"]');
+                mDesc.textContent = descs.length ? descs[0].textContent : '';
+                const tech = row.querySelector('p.font-medium');
+                mTech.textContent = tech ? tech.textContent : '';
+                mLinks.innerHTML = row.querySelector('.flex.gap-4').innerHTML;
+                modal.classList.add('open');
+            });
+        });
+    });
+    document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('open'); });
+
+    // ── Project filter ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectRows = document.querySelectorAll('.project-row[data-tags]');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tag = btn.dataset.filter;
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            projectRows.forEach(row => {
+                const tags = (row.dataset.tags || '').split(' ');
+                const match = tag === 'all' || tags.includes(tag);
+                row.classList.toggle('filter-hidden', !match);
+                if (match) { row.classList.add('reveal'); revealObs.observe(row); }
+            });
+        });
+    });
 });
 
 // ── Preloader ─────────────────────────────────────────
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('preloader').classList.add('loaded');
-        const mc = document.getElementById('main-content');
-        mc.classList.remove('invisible');
-        mc.classList.add('opacity-100');
-    }, 1000);
+function revealContent() {
+    document.getElementById('preloader').classList.add('loaded');
+    const mc = document.getElementById('main-content');
+    mc.classList.remove('invisible');
+    mc.classList.add('opacity-100');
+}
+window.addEventListener('load', () => { setTimeout(revealContent, 1000); });
+setTimeout(revealContent, 5000); // fallback: reveal after 5s even if load stalls
+
+// ── Resume PDF existence check ─────────────────────
+fetch('/resume.pdf', { method: 'HEAD' }).catch(() => {
+    const btn = document.querySelector('.resume-btn');
+    if (btn) btn.style.display = 'none';
 });
 
+// ── Copy email to clipboard ──────────────────────────
+document.getElementById('copyEmailBtn').addEventListener('click', function() {
+    navigator.clipboard.writeText('eswarsamanthula@gmail.com').then(() => {
+        const tip = document.getElementById('copyEmailTip');
+        this.classList.add('copied');
+        tip.style.opacity = '1';
+        setTimeout(() => { tip.style.opacity = '0'; this.classList.remove('copied'); }, 2000);
+    });
+});
+
+// ── Konami code easter egg ───────────────────────────
+(function() {
+    const keys = [];
+    const code = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba';
+    document.addEventListener('keydown', e => {
+        keys.push(e.key);
+        if (keys.length > code.length) keys.shift();
+        if (keys.join('') === code) {
+            document.querySelectorAll('.doodle-star').forEach(s => {
+                s.style.animationDuration = '0.5s';
+                s.style.opacity = '1';
+            });
+            document.querySelector('.handwritten.text-6xl')?.animate([
+                { transform: 'scale(1) rotate(0deg)', opacity: 1 },
+                { transform: 'scale(1.3) rotate(360deg)', opacity: 0.2 },
+                { transform: 'scale(1) rotate(720deg)', opacity: 1 }
+            ], { duration: 1500, easing: 'ease-out' });
+        }
+    });
+})();
+
 // ── EmailJS ──────────────────────────────────────────
+// Verify EmailJS dashboard has domain restriction + rate limiting enabled,
+// since service ID and public key are visible in the client-side source.
 (function() {
     emailjs.init('q8c1AgavyQtt8aPYS');
 })();

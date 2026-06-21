@@ -2,7 +2,7 @@
 
 A storytelling-inspired portfolio built with vanilla HTML, CSS, and JavaScript. Features a hand-drawn doodle aesthetic with Transhumans character illustrations, dark/light theme, and a contact form powered by EmailJS.
 
-**Live site:** [eswarsamanthula.github.io](https://eswarsamanthula.github.io) _(coming soon)_
+**Live site:** [eswarsamanthula.github.io](https://eswarsamanthula.github.io)
 
 ---
 
