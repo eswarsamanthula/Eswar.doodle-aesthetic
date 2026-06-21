@@ -1,5 +1,11 @@
 {
-  "learning": ["Advanced Flask", "System Design"],
-  "building": ["Limitless", "Open-source tools"],
-  "lookingFor": ["Internships", "Collaborations"]
+  "learning": ["Advanced Flask", "System Design", "Supabase — real-time, RLS, Edge Functions"],
+  "building": ["Limitless — first full product on Vercel + Supabase", "StudyGenie — spaced-repetition scheduling", "Open-source tools"],
+  "lookingFor": ["Internships", "Collaborations"],
+  "setup": {
+    "editor": "VS Code with GitHub Copilot",
+    "terminal": "PowerShell + Git Bash",
+    "hosting": "Vercel, Netlify, Render, GitHub Pages",
+    "db": "Supabase, SQLite, PostgreSQL"
+  }
 }

@@ -1,0 +1,17 @@
+{
+  "name": "Eswar — Portfolio",
+  "short_name": "Eswar",
+  "description": "Full-stack developer building tools at the intersection of AI, security, and the web.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F5F1",
+  "theme_color": "#1B1B1B",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

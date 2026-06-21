@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="What Eswar is focused on right now — tools, learning, building, and setup.">
+    <meta property="og:title" content="Eswar — /now">
+    <meta property="og:description" content="What I'm building, learning, and using right now.">
+    <meta property="og:url" content="https://eswarsamanthula.github.io/now/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://eswarsamanthula.github.io/assets/transhumans/Astro.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eswar — /now">
+    <meta name="twitter:description" content="What I'm building, learning, and using right now.">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <title>Now — Eswar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <style>
+        :root { --bg: #F7F5F1; --fg: #1B1B1B; --fg-muted: #5a5a5a; --border: #1B1B1B; --shadow: rgba(0,0,0,0.12); --card-bg: #ffffff; --accent: #DCE7D4; }
+        .dark { --bg: #141414; --fg: #f0ede6; --fg-muted: #999; --border: #f0ede6; --shadow: rgba(255,255,255,0.06); --card-bg: #1e1e1e; --accent: #2a3324; }
+        * { box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--fg); transition: background 0.3s, color 0.3s; margin: 0; padding: 2rem 1rem; }
+        .handwritten { font-family: 'Caveat', cursive; }
+        .wrap { max-width: 640px; margin: 0 auto; }
+        h1 { font-size: 3rem; margin-bottom: 0.25rem; }
+        .back { display: inline-block; margin-bottom: 2rem; color: var(--fg-muted); text-decoration: none; font-size: 0.9rem; }
+        .back:hover { text-decoration: underline; }
+        .section { margin-top: 2rem; }
+        .section h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .section p, .section li { color: var(--fg-muted); line-height: 1.6; }
+        ul { padding-left: 1.25rem; }
+        li { margin-bottom: 0.3rem; }
+        .theme-btn { position: fixed; top: 1rem; right: 1rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--card-bg); color: var(--fg); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 0 var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+        .theme-btn:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 var(--shadow); }
+        .theme-btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+    </style>
+</head>
+<body>
+    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg id="sunIcon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <svg id="moonIcon" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+    </button>
+    <div class="wrap">
+        <a href="../" class="back handwritten">← back to portfolio</a>
+        <h1 class="handwritten">Now</h1>
+        <p style="color:var(--fg-muted); font-size:0.9rem" id="updated">Last updated: June 2026</p>
+
+        <div class="section" id="building-section">
+            <h2 class="handwritten">🔨 Building</h2>
+            <ul id="building-list"></ul>
+        </div>
+
+        <div class="section" id="learning-section">
+            <h2 class="handwritten">📚 Learning</h2>
+            <ul id="learning-list"></ul>
+        </div>
+
+        <div class="section" id="setup-section">
+            <h2 class="handwritten">🛠️ Setup</h2>
+            <ul id="setup-list"></ul>
+        </div>
+
+        <div class="section">
+            <h2 class="handwritten">🎯 Looking for</h2>
+            <p id="looking-text">Internships and collaborations in full-stack development, AI/ML, or cybersecurity. Open to remote and hybrid.</p>
+        </div>
+
+        <p style="margin-top:3rem;font-size:0.8rem;color:var(--fg-muted);opacity:0.5">Inspired by <a href="https://nownownow.com" target="_blank" style="color:var(--fg-muted)">nownownow.com</a></p>
+    </div>
+
+    <script>
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme') || 'light';
+
+        function applyTheme(dark) {
+            html.classList.toggle('dark', dark);
+            document.getElementById('sunIcon').classList.toggle('hidden', dark);
+            document.getElementById('moonIcon').classList.toggle('hidden', !dark);
+        }
+        applyTheme(saved === 'dark');
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            const isDark = !html.classList.contains('dark');
+            applyTheme(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        fetch('../data/now.json').then(r => r.json()).then(data => {
+            const bList = document.getElementById('building-list');
+            if (data.building) bList.innerHTML = data.building.map(i => '<li>' + i + '</li>').join('');
+
+            const lList = document.getElementById('learning-list');
+            if (data.learning) lList.innerHTML = data.learning.map(i => '<li>' + i + '</li>').join('');
+
+            const sList = document.getElementById('setup-list');
+            if (data.setup) sList.innerHTML = Object.entries(data.setup).map(([k, v]) => '<li><strong>' + k.charAt(0).toUpperCase() + k.slice(1) + ':</strong> ' + v + '</li>').join('');
+        }).catch(() => {});
+    </script>
+</body>
+</html>
