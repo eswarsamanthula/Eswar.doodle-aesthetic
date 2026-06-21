@@ -93,12 +93,11 @@ See [`DESIGN.md`](./DESIGN.md) for the full design token documentation including
 No build step required. Open `index.html` in any browser to run locally.
 
 ```bash
-# Clone the repo
-git clone https://github.com/eswarsamanthula/Eswar.Humankind-storytelling_doodle-aesthetic.git
-
 # Open in browser
 open index.html
 ```
+
+> This repo is private. Reach out if you'd like access.
 
 ### Customization
 
@@ -120,4 +119,4 @@ open index.html
 
 ## 📄 License
 
-This project is open source. Feel free to use it as inspiration for your own portfolio.
+All rights reserved. The code in this repository is private — feel free to draw inspiration, but do not copy, distribute, or reuse without permission.
