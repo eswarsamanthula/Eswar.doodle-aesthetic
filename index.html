@@ -581,7 +581,7 @@
 </noscript>
 
 <!-- ═══════════════════════════════════ MAIN CONTENT ═══════════════════════════════════ -->
-<div id="main-content" class="invisible opacity-0 transition-opacity duration-700">
+<main id="main-content" class="invisible opacity-0 transition-opacity duration-700">
 
     <!-- ── NAVBAR ── -->
     <nav id="navbar" class="fixed top-3 left-4 right-4 z-50 px-5 py-3 rounded-2xl transition-transform duration-300">
@@ -761,7 +761,7 @@
                     <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
                         10+ attack scenarios. Custom SQLi, XSS & brute-force modules. A SOC dashboard that actually works.
                     </p>
-                    <p class="text-sm mt-1 handwritten" style="color:var(--fg-muted); opacity:0.6">
+                    <p class="text-sm mt-1 handwritten" style="color:var(--fg-muted)">
                         <span class="case-toggle" onclick="this.parentElement.classList.toggle('open');this.nextElementSibling.classList.toggle('open');this.textContent=this.textContent==='▼ Read case study'?'▲ Hide':'▼ Read case study'">▼ Read case study</span>
                     </p>
                     <div class="case-detail mt-4 space-y-3" style="color:var(--fg-muted)">
@@ -901,8 +901,8 @@
                     <p class="mt-2 text-lg" style="color:var(--fg-muted)">Internships<br/>Collaborations</p>
                 </div>
             </div>
-            <p class="text-sm italic mt-8 reveal" style="color:var(--fg-muted); opacity:0.6">What I'm exploring right now — <a href="now/" class="underline underline-offset-2" style="color:var(--fg-muted)">see full /now page →</a></p>
-            <div class="mt-6 reveal text-sm" style="color:var(--fg-muted); opacity:0.5">
+            <p class="text-sm italic mt-8 reveal" style="color:var(--fg-muted)">What I'm exploring right now — <a href="now/" class="underline underline-offset-2" style="color:var(--fg-muted)">see full /now page →</a></p>
+            <div class="mt-6 reveal text-sm" style="color:var(--fg-muted)">
                 <span class="inline-flex items-center gap-1.5">
                     <span>⚡</span>
                     <span id="gh-activity">Loading GitHub activity...</span>
@@ -952,26 +952,26 @@
 
             <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-8 reveal">
                 <div>
-                    <h4 class="skill-cat">Frontend</h4>
+                    <h3 class="skill-cat">Frontend</h3>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>HTML</div>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>CSS</div>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>JavaScript</div>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><circle cx="16" cy="8" r="1"/><circle cx="10" cy="16" r="1"/></svg>React</div>
                 </div>
                 <div>
-                    <h4 class="skill-cat">Backend</h4>
+                    <h3 class="skill-cat">Backend</h3>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 4.4-2.8 8.2-6.7 9.6-.5.1-.7-.2-.7-.5v-3.2c0-1-.3-1.7-.7-2 1.5-.2 3-1.5 3-3.5 0-.8-.3-1.5-.8-2 .1-.2.4-1-.2-2 0 0-.7-.2-2.2.8a7.6 7.6 0 0 0-4 0c-1.5-1-2.2-.8-2.2-.8-.6 1-.3 1.8-.2 2-.5.5-.8 1.2-.8 2 0 2 1.5 3.3 3 3.5-.3.3-.6.9-.7 1.4-.6.3-2 .6-2.8-.6 0 0-.5-.9-1.5-1 0 0-1 0-.1.6 0 0 .7.3 1.1 1.6 0 0 .6 2 3.2 1.4v2c0 .3-.2.6-.7.5A10 10 0 0 1 2 12 10 10 0 0 1 12 2z"/></svg>Python</div>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Flask</div>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M16 8l-4 4m0 0l-4-4m4 4v8"/></svg>Node.js</div>
                 </div>
                 <div>
-                    <h4 class="skill-cat">Tools</h4>
+                    <h3 class="skill-cat">Tools</h3>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07-7.07l-1.41 1.41M6.34 17.66l-1.41 1.41M17.66 6.34l1.41-1.41M6.34 6.34L4.93 4.93"/></svg>Git</div>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c-4 0-7 3-7 7v6c0 4 3 7 7 7s7-3 7-7V9c0-4-3-7-7-7z"/><path d="M9 9h6"/><path d="M9 13h6"/></svg>Supabase</div>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4v14h14v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Figma</div>
                 </div>
                 <div>
-                    <h4 class="skill-cat">Interests</h4>
+                    <h3 class="skill-cat">Interests</h3>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 4.4-2.8 8.2-6.7 9.6-.5.1-.7-.2-.7-.5v-3.2c0-1-.3-1.7-.7-2 1.5-.2 3-1.5 3-3.5 0-.8-.3-1.5-.8-2 .1-.2.4-1-.2-2 0 0-.7-.2-2.2.8a7.6 7.6 0 0 0-4 0c-1.5-1-2.2-.8-2.2-.8-.6 1-.3 1.8-.2 2-.5.5-.8 1.2-.8 2 0 2 1.5 3.3 3 3.5-.3.3-.6.9-.7 1.4-.6.3-2 .6-2.8-.6 0 0-.5-.9-1.5-1 0 0-1 0-.1.6 0 0 .7.3 1.1 1.6 0 0 .6 2 3.2 1.4v2c0 .3-.2.6-.7.5A10 10 0 0 1 2 12 10 10 0 0 1 12 2z"/></svg>AI / ML</div>
                     <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/></svg>Cybersecurity</div>
                 </div>
@@ -1121,16 +1121,16 @@
             </a>
         </div>
         <!-- Consider adding privacy-respecting analytics (Plausible, Umami) once you share the link for internship apps -->
-        <p class="text-xs leading-relaxed" style="color:var(--fg-muted); opacity:0.5">
+        <p class="text-xs leading-relaxed" style="color:var(--fg-muted)">
             Built with HTML, CSS, JavaScript and lots of coffee.
         </p>
-        <p class="text-xs mt-1" style="color:var(--fg-muted); opacity:0.35">
+        <p class="text-xs mt-1" style="color:var(--fg-muted)">
             © 2026 Eswar
         </p>
 
     </footer>
 
-</div><!-- /main-content -->
+</main><!-- /main-content -->
 
 <!-- ── Command palette (⌘K) ── -->
 <div id="cmdPalette" role="dialog" aria-label="Command palette">
@@ -1375,7 +1375,7 @@ window.addEventListener('load', () => { setTimeout(revealContent, 1000); });
 setTimeout(revealContent, 5000); // fallback: reveal after 5s even if load stalls
 
 // ── Resume PDF existence check ─────────────────────
-fetch('/resume.pdf', { method: 'HEAD' }).catch(() => {
+fetch('/resume.pdf', { method: 'HEAD' }).then(r => { if (!r.ok) throw new Error('not found'); }).catch(() => {
     const btn = document.querySelector('.resume-btn');
     if (btn) btn.style.display = 'none';
 });
