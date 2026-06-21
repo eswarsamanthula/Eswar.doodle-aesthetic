@@ -1374,12 +1374,6 @@ function revealContent() {
 window.addEventListener('load', () => { setTimeout(revealContent, 1000); });
 setTimeout(revealContent, 5000); // fallback: reveal after 5s even if load stalls
 
-// ── Resume PDF existence check ─────────────────────
-fetch('/resume.pdf', { method: 'HEAD' }).then(r => { if (!r.ok) throw new Error('not found'); }).catch(() => {
-    const btn = document.querySelector('.resume-btn');
-    if (btn) btn.style.display = 'none';
-});
-
 // ── Copy email to clipboard ──────────────────────────
 document.getElementById('copyEmailBtn').addEventListener('click', function() {
     navigator.clipboard.writeText('eswarsamanthula@gmail.com').then(() => {
