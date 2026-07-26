@@ -15,3 +15,7 @@ desktop.ini
 
 # Dependencies (if any)
 node_modules/
+
+# Generated outputs
+brag-output/
+graphify-out/
