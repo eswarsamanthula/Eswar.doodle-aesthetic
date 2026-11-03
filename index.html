@@ -174,22 +174,22 @@
         }
 
         .js .reveal {
-            opacity: 0;
-            transform: translateY(28px);
+            opacity: 1;
+            transform: none;
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .desktop-nav-links { gap: 1.25rem; }\n        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .desktop-nav-links { gap: 1.25rem; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
         #preloader {
-            transition: opacity 0.6s ease, visibility 0.6s;
-        }
-        #preloader.loaded {
-            opacity: 0;
-            visibility: hidden;
             pointer-events: none;
+            animation: preloader-fallback 1s 0.35s forwards;
+            transition: opacity 0.25s ease, visibility 0.25s;
+        }
+        #preloader.loaded { animation: none; opacity: 0; visibility: hidden; pointer-events: none; }
+        @keyframes preloader-fallback {
+            0%, 65% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
         }
         @keyframes fadeInOut {
             0%, 100% { opacity: 0.08; }
@@ -253,10 +253,10 @@
             transition: transform 0.2s, box-shadow 0.2s;
             white-space: nowrap;
         }
-        .resume-btn:hover {
-            transform: translateY(-2px) translateX(-1px);
-            box-shadow: 4px 4px 0 var(--shadow);
-        }
+        .resume-btn:hover { transform: translateY(-2px) translateX(-1px); box-shadow: 4px 4px 0 var(--shadow); }
+        .portfolio-btn { background: var(--accent); color: var(--fg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 18px; font-weight: 700; box-shadow: 3px 3px 0 var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+        .portfolio-btn:hover { transform: translateY(-2px) translateX(-1px); box-shadow: 4px 4px 0 var(--shadow); }
+        .portfolio-btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 
         .theme-btn {
             border-radius: 50%;
@@ -306,7 +306,7 @@
         @media print {
             #navbar, #preloader, #scrollTop, .doodle-divider, .runner-float,
             .parallax-svg, .floating, .doodle-star, .skip-link,
-            #contact-form, .resume-btn, #themeToggle, #mobile-menu-button,
+            #contact-form, .resume-btn, .portfolio-btn, #themeToggle, #mobile-menu-button,
             .js .project-number-anim { display: none !important; }
             #main-content { visibility: visible !important; opacity: 1 !important; }
             section, .project-row { break-inside: avoid; }
@@ -374,15 +374,8 @@
 
         .parallax-svg { will-change: transform; }
 
-        .project-number-anim {
-            opacity: 0;
-            transform: translateY(40px) scale(0.8);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-        .project-number-anim.visible {
-            opacity: 0.1;
-            transform: translateY(0) scale(1);
-        }
+        .project-number-anim { opacity: 0.1; transform: none; transition: opacity 0.6s, transform 0.6s; }
+        .project-number-anim.visible { opacity: 0.1; transform: translateY(0) scale(1); }
 
         .project-row { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.5 6L21 9l-5 4.5 1.5 7.5L12 17l-5.5 4.5L8 13.5 3 9l6.5-1z' fill='%231B1B1B' opacity='0.6'/%3E%3C/svg%3E") 12 12, auto; }
 
@@ -585,7 +578,7 @@
 </noscript>
 
 <!-- ═══════════════════════════════════ MAIN CONTENT ═══════════════════════════════════ -->
-<main id="main-content" class="invisible opacity-0 transition-opacity duration-700">
+<main id="main-content" class="transition-opacity duration-700">
 
     <!-- ── NAVBAR ── -->
     <nav id="navbar" class="fixed top-3 left-4 right-4 z-50 px-5 py-3 rounded-2xl transition-transform duration-300">
@@ -643,7 +636,10 @@
                 <p class="text-lg md:text-xl mt-6 max-w-lg reveal" style="color:var(--fg-muted)">
                     I'm Eswar — a CSE student at Amrita Vishwa Vidyapeetham, Amritapuri. I like understanding complex problems, experimenting with technology, and building practical software.
                 </p>
-                <a href="#projects" class="doodle-button inline-block px-8 py-3 mt-8 text-lg font-bold reveal">View Projects ↓</a>
+                <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-8 reveal">
+                    <a href="#projects" class="doodle-button inline-block px-8 py-3 text-lg font-bold">View Projects ↓</a>
+                    <a href="assets/Eswar_Atomberg_Portfolio.pdf" download class="portfolio-btn inline-block text-sm">Download Portfolio PDF</a>
+                </div>
                 <p class="last-shipped handwritten reveal mt-4" style="color:var(--fg-muted)">B.Tech CSE · Expected 2027</p>
                 <div class="terminal-box reveal mt-5" data-delay="200">
                     <span class="prompt">$</span>
@@ -682,8 +678,9 @@
     <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
 
     <!-- ═══════ STATEMENT ═══════ -->
-    <section class="py-24 text-center overflow-hidden" style="background:var(--bg)">
+    <section class="py-24 text-center overflow-hidden" id="words" style="background:var(--bg)">
         <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold handwritten reveal mb-6">Words</h2>
             <p class="font-bold handwritten leading-[1.1] reveal parallax-svg" data-speed="-0.02" style="font-size:clamp(2.5rem,8vw,6rem)">
                 I learn<br/>
                 <span class="inline-block mt-2">by building.</span>
@@ -1057,17 +1054,17 @@ window.addEventListener('scroll', () => {
 // ── Intersection observers ────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
 
-        const revealObs = new IntersectionObserver((entries) => {
+        const revealObs = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
-                    setTimeout(() => {
-                        e.target.classList.add('visible');
-                    }, parseInt(e.target.dataset.delay) || 0);
+                    setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay) || 0);
                     revealObs.unobserve(e.target);
                 }
             });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.reveal, .project-number-anim').forEach(el => revealObs.observe(el));
+        }, { threshold: 0.15 }) : null;
+        document.querySelectorAll('.reveal, .project-number-anim').forEach(el => {
+            if (revealObs) revealObs.observe(el); else el.classList.add('visible');
+        });
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -1079,14 +1076,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Active nav-link highlighting ──
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link[data-section]');
-    const navObs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === e.target.id));
-            }
-        });
-    }, { threshold: 0.3 });
-    sections.forEach(s => navObs.observe(s));
+    if ('IntersectionObserver' in window) {
+        const navObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === e.target.id));
+            });
+        }, { threshold: 0.3 });
+        sections.forEach(s => navObs.observe(s));
+    }
 
     // ── Project details modal ──
     const modal = document.getElementById('projectModal');
@@ -1127,7 +1124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tags = (row.dataset.tags || '').split(' ');
                 const match = tag === 'all' || tags.includes(tag);
                 row.classList.toggle('filter-hidden', !match);
-                if (match) { row.classList.add('reveal'); revealObs.observe(row); }
+                if (match) { row.classList.add('reveal', 'visible'); revealObs?.observe(row); }
             });
             document.getElementById('filter-status').textContent = Array.from(projectRows).filter(row => !row.classList.contains('filter-hidden')).length + ' featured projects shown.';
         });
@@ -1136,14 +1133,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ── Preloader ─────────────────────────────────────────
-function revealContent() {
-    document.getElementById('preloader').classList.add('loaded');
-    const mc = document.getElementById('main-content');
-    mc.classList.remove('invisible');
-    mc.classList.add('opacity-100');
-}
-window.addEventListener('load', () => { setTimeout(revealContent, 1000); });
-setTimeout(revealContent, 5000); // fallback: reveal after 5s even if load stalls
+function revealContent() { document.getElementById('preloader')?.classList.add('loaded'); }
+window.addEventListener('load', () => { setTimeout(revealContent, 250); }, { once: true });
+setTimeout(revealContent, 700); // Never wait on external scripts or the full load event.
 
 // ── Copy email to clipboard ──────────────────────────
 document.getElementById('copyEmailBtn').addEventListener('click', function() {

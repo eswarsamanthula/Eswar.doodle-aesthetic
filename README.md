@@ -10,7 +10,7 @@ No build step is required. From this folder, run:
 python -m http.server 8000
 ~~~
 
-Open http://localhost:8000. An HTTP server supports the /now page and service worker. The included resume.pdf is downloadable.
+Open http://localhost:8000. An HTTP server supports the /now page and service worker. The included resume.pdf and assets/Eswar_Atomberg_Portfolio.pdf are downloadable.
 
 ## Featured projects
 
@@ -51,6 +51,7 @@ Existing EmailJS identifiers are retained. Check domain restrictions and rate li
 - data/now.json — /now page content
 - assets/transhumans/ — character illustrations
 - resume.pdf — downloadable resume
+- assets/Eswar_Atomberg_Portfolio.pdf — Atomberg CMF Design Intern application portfolio
 - DESIGN.md — visual system notes
 
 ## Review and push
