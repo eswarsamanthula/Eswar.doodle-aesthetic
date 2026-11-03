@@ -1,10 +1,11 @@
-const CACHE = 'eswar-portfolio-v2';
+const CACHE = 'eswar-portfolio-v3';
 const ASSETS = [
   './',
   'index.html',
   'now/',
   'now/index.html',
   'assets/favicon.svg',
+  'assets/Eswar_Atomberg_Portfolio.pdf',
   'assets/transhumans/Astro.svg',
   'assets/transhumans/Runner.svg',
   'assets/transhumans/Coffee.svg',
