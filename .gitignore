@@ -13,9 +13,16 @@ desktop.ini
 *.njsproj
 *.sln
 
-# Dependencies (if any)
+# Dependencies
 node_modules/
 
 # Generated outputs
 brag-output/
 graphify-out/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key

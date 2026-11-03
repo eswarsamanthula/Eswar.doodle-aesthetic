@@ -1,122 +1,67 @@
 # Eswar — Portfolio
 
-A storytelling-inspired portfolio built with vanilla HTML, CSS, and JavaScript. Features a hand-drawn doodle aesthetic with Transhumans character illustrations, dark/light theme, and a contact form powered by EmailJS.
+A personal portfolio built with vanilla HTML, CSS, and JavaScript. It keeps the paper-like canvas, Caveat headings, DM Sans interface, Transhumans doodles, numbered alternating project rows, and hand-drawn buttons.
 
-**Live site:** [eswarsamanthula.github.io](https://eswarsamanthula.github.io)
+## Run locally
 
----
+No build step is required. From this folder, run:
 
-## ✨ Features
+~~~powershell
+python -m http.server 8000
+~~~
 
-- **Doodle aesthetic** — Hand-drawn borders, hard-offset shadows, rotating star decorations, and paper-like texture
-- **Dark/light theme** — Persisted in `localStorage`, toggled via a sun/moon button
-- **7 project showcases** — Numbered project rows with live demos and GitHub links
-- **Editorial contact layout** — CSS `shape-outside` text wrapping around a character illustration
-- **Scroll reveal** — IntersectionObserver-powered fade-and-slide-up animations
-- **Parallax** — Subtle scroll-driven movement on hero and statement illustrations
-- **Responsive** — Mobile-first layout that adapts from phone to desktop
-- **EmailJS contact form** — Sends messages directly to the owner's inbox
-- **Preloader** — Full-screen loading animation on each visit
-- **Custom 404-page-ready** — Single-page anchor-based navigation
+Open http://localhost:8000. An HTTP server supports the /now page and service worker. The included resume.pdf is downloadable.
 
----
+## Featured projects
 
-## 🛠️ Tech Stack
+1. **THFSA — Transformer-Based Hardware Fingerprint Identification**: scanner identification and verification research prototype with a Flask multi-factor authentication demonstration. Stored images were used; no physical R307 scanner was connected or tested.
+2. **Adaptive Traffic Signal Controller**: MQTT and Python traffic controller simulation with a Node-RED dashboard. It does not control real road infrastructure.
+3. **PRNU Smartphone Authentication**: PRNU camera fingerprint research implementation inspired by the ABC smartphone authentication protocol.
+4. **Liftly**: ride-share app using React, TypeScript, Express, and MongoDB. Feature copy is based on repository routes and screens.
+5. **StudyGenie AI**: Gemini and Supabase study planner. Live demo: https://studygenie-ai.netlify.app/
+6. **Dormsy**: Supabase hostel management app with admin, warden, and student areas. Live demo: https://dormsy-hostel-management-system.vercel.app/
+7. **Design Pattern Case Study**: pattern analysis and UML work for a NestJS parking application.
 
-| Technology | Purpose |
-|---|---|
-| HTML5 | Structure |
-| CSS3 (Custom Properties) | Styling, theming, animations |
-| JavaScript (Vanilla) | Interactivity, scroll effects, EmailJS |
-| [Tailwind CSS](https://tailwindcss.com/) (CDN) | Responsive utility classes |
-| [EmailJS](https://www.emailjs.com/) | Contact form delivery |
-| [DM Sans](https://fonts.google.com/specimen/DM+Sans) | Body typography |
-| [Caveat](https://fonts.google.com/specimen/Caveat) | Handwritten display font |
-| [Transhumans](https://transhumans.art/) | Character illustrations |
+SecurePortal, Limitless, Weather Insight, Ritual, and Pixel Blaster remain in the secondary project list.
 
----
+## Features
 
-## 📁 Project Structure
+- Light/dark theme with persisted preference
+- Responsive alternating showcases and working category filters
+- Project details dialog and native detail disclosure
+- Transhumans SVG illustrations
+- Academic timeline, current studies, grouped skills, and contact form
+- EmailJS integration with browser-side validation and feedback
+- Keyboard navigation, reduced-motion support, and reveal fallback without JavaScript
+- Reading progress, command palette, keyboard shortcuts, preloader, and scroll-to-top
 
-```
-├── index.html                  # Single-page portfolio
-├── README.md                   # This file
-├── DESIGN.md                   # Design system documentation
-├── assets/
-│   └── transhumans/            # SVG character illustrations (12 files)
-│       ├── Astro.svg
-│       ├── Coffee.svg
-│       ├── Feliz.svg
-│       ├── Gamestation.svg
-│       ├── Jumping.svg
-│       ├── Looking Ahead.svg
-│       ├── Mask.svg
-│       ├── Pondering.svg
-│       ├── Puppy.svg
-│       ├── Roboto.svg
-│       ├── Runner.svg
-│       └── Waiting.svg
-```
+## Contact and EmailJS
 
----
+Email: eswarsamanthula@gmail.com
+GitHub: https://github.com/eswarsamanthula
+LinkedIn: https://linkedin.com/in/eswarsamanthula
+Docker Hub: https://hub.docker.com/u/eswarsamanthula
 
-## 🚀 Projects Featured
+Existing EmailJS identifiers are retained. Check domain restrictions and rate limits in the EmailJS dashboard. Delivery was not verified because doing so requires sending a message.
 
-| # | Project | Tech Stack | Live Demo | GitHub |
-|---|---|---|---|---|
-| 01 | **StudyGenie** | Flask · OpenAI · SQLite | [Live](https://studygenie-ai.netlify.app) | [Repo](https://github.com/eswarsamanthula/StudyGenie-AI) |
-| 02 | **SecurePortal** | Flask · SQLite · Python · Security | [Live](https://secure-student-portal.onrender.com) | [Repo](https://github.com/eswarsamanthula/secure-student-portal) |
-| 03 | **Limitless** | Supabase · Vercel · JavaScript | [Live](https://applimitlessai.vercel.app) | [Repo](https://github.com/eswarsamanthula/Limitless) |
-| 04 | **Dormsy** | React · Node.js · Supabase · Stripe | [Live](https://dormsy-hostel-management-system.vercel.app) | [Repo](https://github.com/eswarsamanthula/Dormsy_Hostel_Management_System) |
-| 05 | **Weather Insight** | JavaScript · Weather API · Netlify | [Live](https://weather-insight-wed.netlify.app) | [Repo](https://github.com/eswarsamanthula/Weather-Insight-Web) |
-| 06 | **Ritual** | JavaScript · Vercel | [Live](https://ritual-cyan.vercel.app) | [Repo](https://github.com/eswarsamanthula/Ritual) |
-| 07 | **Pixel Blaster** | HTML · CSS · JavaScript | [Live](https://eswarsamanthula.github.io/pixel-blaster-dx) | [Repo](https://github.com/eswarsamanthula/pixel-blaster-dx) |
+## Project structure
 
----
+- index.html — main portfolio, styles, and vanilla JavaScript
+- now/index.html — compact /now page
+- data/now.json — /now page content
+- assets/transhumans/ — character illustrations
+- resume.pdf — downloadable resume
+- DESIGN.md — visual system notes
 
-## 🎨 Design System
+## Review and push
 
-See [`DESIGN.md`](./DESIGN.md) for the full design token documentation including colors, typography, spacing, component specs, and animation details.
+Target repository: https://github.com/eswarsamanthula/Eswar.doodle-aesthetic (branch master)
 
-### Key Design Tokens
-
-- **Background**: `#F7F5F1` (warm off-white) / `#141414` (near-black dark)
-- **Foreground**: `#1B1B1B` (soft black) / `#f0ede6` (warm white dark)
-- **Accents**: Mint `#DCE7D4`, Sky `#DDE7F6`, Cream `#F5E8C7`
-- **Border**: 1px solid `--border` with 3-5px hard offset shadow
-- **Fonts**: DM Sans (body) + Caveat (handwritten headings)
-
----
-
-## 🔧 Development
-
-No build step required. Open `index.html` in any browser to run locally.
-
-```bash
-# Open in browser
-open index.html
-```
-
-> This repo is private. Reach out if you'd like access.
-
-### Customization
-
-- **Theme**: Modify `:root` / `.dark` CSS custom properties in `<style>`
-- **Projects**: Edit the `.project-row` blocks in the projects section
-- **Content**: Update text throughout in the HTML body
-- **EmailJS**: Replace `service_4i3nbxz`, `template_gaz6a83`, and `q8c1AgavyQtt8aPYS` in the script section
-
----
-
-## 📬 Contact
-
-- **Email**: [eswarsamanthula@gmail.com](mailto:eswarsamanthula@gmail.com)
-- **LinkedIn**: [eswarsamanthula](https://linkedin.com/in/eswarsamanthula)
-- **GitHub**: [eswarsamanthula](https://github.com/eswarsamanthula)
-- **Docker Hub**: [eswarsamanthula](https://hub.docker.com/u/eswarsamanthula)
-
----
-
-## 📄 License
-
-All rights reserved. The code in this repository is private — feel free to draw inspiration, but do not copy, distribute, or reuse without permission.
+~~~powershell
+git status
+git diff
+git diff --check
+git add .gitignore index.html README.md DESIGN.md data/now.json now/index.html manifest.json robots.txt sitemap.xml sw.js
+git commit -m "Upgrade portfolio with 2026 projects and journey"
+git push -u origin master
+~~~

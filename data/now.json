@@ -1,11 +1,6 @@
 {
-  "learning": ["Advanced Flask", "System Design", "Supabase — real-time, RLS, Edge Functions"],
-  "building": ["Limitless — first full product on Vercel + Supabase", "StudyGenie — spaced-repetition scheduling", "Open-source tools"],
-  "lookingFor": ["Internships", "Collaborations"],
-  "setup": {
-    "editor": "VS Code with GitHub Copilot",
-    "terminal": "PowerShell + Git Bash",
-    "hosting": "Vercel, Netlify, Render, GitHub Pages",
-    "db": "Supabase, SQLite, PostgreSQL"
-  }
+  "learning": ["Artificial intelligence and machine learning", "Deep learning and computer vision", "Cybersecurity and authentication", "Full-stack development", "IoT and distributed systems", "Software architecture and design patterns"],
+  "building": ["Research prototypes and practical software systems"],
+  "lookingFor": ["B.Tech Computer Science and Engineering at Amrita Vishwa Vidyapeetham, Amritapuri — expected graduation 2027"],
+  "setup": {"editor": "VS Code", "languages": "Python, C, C++, Java, JavaScript, TypeScript, SQL", "tools": "Git, GitHub, Docker, MQTT, Node-RED"}
 }

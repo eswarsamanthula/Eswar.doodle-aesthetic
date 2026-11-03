@@ -1,6 +1,6 @@
-const CACHE = 'eswar-portfolio-v1';
+const CACHE = 'eswar-portfolio-v2';
 const ASSETS = [
-  '/',
+  './',
   'index.html',
   'now/',
   'now/index.html',

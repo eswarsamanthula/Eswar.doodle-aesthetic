@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add("js");</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Eswar's portfolio — a full-stack developer building tools at the intersection of AI, security, and the web. Explore projects, skills, and get in touch.">
-    <meta property="og:title" content="Eswar — Full-Stack Developer Portfolio">
-    <meta property="og:description" content="Building tools at the intersection of AI, security, and the web. Explore projects, skills, and get in touch.">
-    <meta property="og:url" content="https://eswarsamanthula.github.io">
+    <meta name="description" content="Eswar Samanthula is a Computer Science Engineering student at Amrita Amritapuri, learning by building software, AI, computer vision, and security projects.">
+    <meta property="og:title" content="Eswar Samanthula — CSE Student & Software Developer">
+    <meta property="og:description" content="Computer Science Engineering student at Amrita Amritapuri. I learn by building software and research prototypes.">
+    <meta property="og:url" content="https://eswarsamanthula.github.io/Eswar.doodle-aesthetic/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://eswarsamanthula.github.io/assets/transhumans/Astro.svg">
+    <meta property="og:image" content="https://eswarsamanthula.github.io/Eswar.doodle-aesthetic/assets/transhumans/Astro.svg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Eswar — Full-Stack Developer Portfolio">
-    <meta name="twitter:description" content="Building tools at the intersection of AI, security, and the web.">
+    <meta name="twitter:title" content="Eswar Samanthula — CSE Student & Software Developer">
+    <meta name="twitter:description" content="CSE student, software developer, and AI & security enthusiast.">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="manifest" href="manifest.json">
-    <title>Eswar</title>
+    <title>Eswar Samanthula — CSE Student &amp; Software Developer</title>
     <!-- PROD: swap cdn.tailwindcss.com for a prebuilt/purged CSS file to avoid shipping the JIT compiler to the browser -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -172,12 +173,12 @@
             }
         }
 
-        .reveal {
+        .js .reveal {
             opacity: 0;
             transform: translateY(28px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .reveal.visible {
+        .desktop-nav-links { gap: 1.25rem; }\n        .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -306,7 +307,7 @@
             #navbar, #preloader, #scrollTop, .doodle-divider, .runner-float,
             .parallax-svg, .floating, .doodle-star, .skip-link,
             #contact-form, .resume-btn, #themeToggle, #mobile-menu-button,
-            .project-number-anim { display: none !important; }
+            .js .project-number-anim { display: none !important; }
             #main-content { visibility: visible !important; opacity: 1 !important; }
             section, .project-row { break-inside: avoid; }
             body { font-size: 11pt; color: #000; background: #fff; }
@@ -563,9 +564,12 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
     </style>
 </head>
-<body>
+<body id="top">
 
 <!-- ── Skip-to-content link ── -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -587,14 +591,14 @@
     <nav id="navbar" class="fixed top-3 left-4 right-4 z-50 px-5 py-3 rounded-2xl transition-transform duration-300">
         <div class="max-w-6xl mx-auto flex items-center">
             <div class="flex-1 flex justify-start">
-                <a href="#" id="logo-text" class="font-bold text-2xl handwritten" style="color:var(--fg)">Eswar<span class="cursor">_</span></a>
+                <a href="#top" id="logo-text" class="font-bold text-2xl handwritten" style="color:var(--fg)">Eswar<span class="cursor">_</span></a>
             </div>
 
-            <div class="hidden md:flex items-center gap-8 flex-1 justify-center">
+            <div class="desktop-nav-links hidden md:flex items-center flex-1 justify-center">
                 <a href="#about"    class="nav-link" data-section="about">About</a>
                 <a href="#projects" class="nav-link" data-section="projects">Projects</a>
                 <a href="#currently" class="nav-link" data-section="currently">Now</a>
-                <a href="now/"  class="nav-link">/now</a>
+
                 <a href="#skills"   class="nav-link" data-section="skills">Skills</a>
                 <a href="#contact"  class="nav-link" data-section="contact">Contact</a>
             </div>
@@ -604,8 +608,8 @@
                     <svg id="sunIcon"  class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                     <svg id="moonIcon" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
                 </button>
-                <a href="resume.pdf" target="_blank" class="resume-btn">Resume ↗</a>
-                <button id="mobile-menu-button" class="md:hidden p-1" aria-label="Menu">
+                <a href="resume.pdf" download class="resume-btn">Resume ↗</a>
+                <button id="mobile-menu-button" class="md:hidden p-1" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path id="menu-open"   stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                         <path id="menu-close"  stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" class="hidden"/>
@@ -618,7 +622,7 @@
             <a href="#about"    class="nav-link py-1">About</a>
             <a href="#projects" class="nav-link py-1">Projects</a>
             <a href="#currently" class="nav-link py-1">Now</a>
-            <a href="now.html"  class="nav-link py-1">/now</a>
+
             <a href="#skills"   class="nav-link py-1">Skills</a>
             <a href="#contact"  class="nav-link py-1">Contact</a>
         </div>
@@ -633,15 +637,14 @@
                     Learning fast.
                 </h1>
                 <p class="text-xl md:text-2xl mt-2 reveal handwritten" style="color:var(--fg-muted)">
-                    Turning ideas into products,<br/>
-                    <span class="inline-block mt-1">one project at a time.</span>
+                    Computer Science Engineering Student<br/>
+                    <span class="inline-block mt-1">Software Developer · AI &amp; Security Enthusiast</span>
                 </p>
                 <p class="text-lg md:text-xl mt-6 max-w-lg reveal" style="color:var(--fg-muted)">
-                    I build full-stack tools at the intersection of<br/>
-                    AI, security, and the web.
+                    I'm Eswar — a CSE student at Amrita Vishwa Vidyapeetham, Amritapuri. I like understanding complex problems, experimenting with technology, and building practical software.
                 </p>
                 <a href="#projects" class="doodle-button inline-block px-8 py-3 mt-8 text-lg font-bold reveal">View Projects ↓</a>
-                <p class="last-shipped handwritten reveal mt-4" style="color:var(--fg-muted)">Last shipped: June 2026</p>
+                <p class="last-shipped handwritten reveal mt-4" style="color:var(--fg-muted)">B.Tech CSE · Expected 2027</p>
                 <div class="terminal-box reveal mt-5" data-delay="200">
                     <span class="prompt">$</span>
                     <span class="cmd">git commit -m "still learning"</span>
@@ -649,8 +652,8 @@
                 </div>
                 <p class="text-xs mt-4 reveal handwritten" data-delay="300" style="color:var(--fg-muted); opacity:0.4" id="timeGreeting"></p>
             </div>
-            <div class="md:w-3/5 flex justify-center md:justify-end -mr-12 reveal parallax-svg" data-speed="0.08">
-                <img src="assets/transhumans/Astro.svg" alt="" class="floating" width="420" height="420">
+            <div class="md:w-3/5 flex justify-center md:justify-end md:-mr-12 reveal parallax-svg" data-speed="0.08">
+                <img src="assets/transhumans/Astro.svg" alt="Hand-drawn astronaut looking ahead" class="floating" width="420" height="420">
             </div>
         </div>
     </section>
@@ -668,26 +671,13 @@
             </div>
 
             <div class="max-w-3xl mx-auto space-y-10">
-                <div class="reveal" data-delay="0">
-                    <h3 class="text-xl font-bold">2015 – 2022</h3>
-                    <p class="text-lg mt-1" style="color:var(--fg-muted)">School — got curious about computers &amp; coding. Started building small projects.</p>
-                </div>
-                <div class="reveal" data-delay="100">
-                    <h3 class="text-xl font-bold">2023</h3>
-                    <p class="text-lg mt-1" style="color:var(--fg-muted)">Started B.Tech CSE at Amrita Vishwa Vidyapeetham, Amritapuri.</p>
-                </div>
-                <div class="reveal" data-delay="200">
-                    <h3 class="text-xl font-bold">2024</h3>
-                    <p class="text-lg mt-1" style="color:var(--fg-muted)">Built StudyGenie (AI study planner), SecurePortal (cybersecurity lab), and hands-on full-stack projects.</p>
-                </div>
-                <div class="reveal relative" data-delay="300">
-                    <h3 class="text-xl font-bold">2025 – Now</h3>
-                    <p class="text-lg mt-1" style="color:var(--fg-muted)">Building Limitless on Supabase/Vercel. Open to internships and collaborations.</p>
-                    <img src="assets/transhumans/Coffee.svg" alt="" class="absolute -top-8 -right-8 hidden md:block" width="100" height="100">
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="reveal"><h3>2023</h3><p class="text-lg mt-1" style="color:var(--fg-muted)">Started my B.Tech in Computer Science and Engineering at Amrita Vishwa Vidyapeetham, Amritapuri.</p></div>
+<div class="reveal"><h3>2024</h3><p class="text-lg mt-1" style="color:var(--fg-muted)">Built foundational programming knowledge and began developing practical software projects.</p></div>
+<div class="reveal"><h3>2025</h3><p class="text-lg mt-1" style="color:var(--fg-muted)">Expanded into full-stack development, databases, AI-based applications, and software engineering.</p></div>
+<div class="reveal relative"><h3>2026</h3><p class="text-lg mt-1" style="color:var(--fg-muted)">Worked on research-oriented authentication, transformer-based hardware fingerprint identification, IoT systems, and adaptive traffic management.</p><img src="assets/transhumans/Coffee.svg" alt="Hand-drawn person enjoying a cup of coffee" class="absolute -top-8 -right-8 hidden md:block" width="100" height="100"></div>
+<div class="reveal"><h3>2027</h3><p class="text-lg mt-1" style="color:var(--fg-muted)">Expected B.Tech graduation.</p></div></div>
+</div>
+</section>
 
     <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
 
@@ -704,7 +694,7 @@
             </p>
             <p class="text-2xl md:text-3xl mt-10 font-bold reveal">
                 Real projects.<br/>
-                Real users.<br/>
+                Useful tools.<br/>
                 Real problems.
             </p>
         </div>
@@ -718,161 +708,27 @@
             <div class="flex items-center justify-center gap-4 mb-10 relative">
                 <span class="doodle-star absolute -left-4 top-0">✧</span>
                 <h2 class="text-4xl md:text-5xl font-bold handwritten reveal">Things I've Built</h2>
-                <img src="assets/transhumans/Astro.svg" alt="" class="reveal shrink-0" width="100" height="100">
+                <img src="assets/transhumans/Astro.svg" alt="" class="reveal shrink-0" width="100" height="100" >
                 <span class="doodle-star absolute -right-4 bottom-0" style="animation-delay:3s">✦</span>
             </div>
 
-            <div class="flex flex-wrap gap-2 justify-center mb-10 reveal" id="filter-bar">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="ai">AI</button>
-                <button class="filter-btn" data-filter="security">Security</button>
-                <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
-                <button class="filter-btn" data-filter="game">Game</button>
-                <button id="shuffleBtn" class="filter-btn" aria-label="Shuffle projects" title="Shuffle order">🔀</button>
-            </div>
-
-            <!-- Project 01 — StudyGenie -->
-            <div class="project-row mb-16 reveal" data-delay="0" data-tags="ai">
-                <div>
-                    <div class="project-number project-number-anim">01</div>
-                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">StudyGenie</h3>
-                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
-                        500+ study prompts optimized. Built across multiple AI workflows. Shipping features during semester breaks.
-                    </p>
-                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Flask · OpenAI · SQLite</p>
-                    <div class="flex gap-4 mt-6">
-                        <a href="https://studygenie-ai.netlify.app" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
-                        <a href="https://github.com/eswarsamanthula/StudyGenie-AI" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent)">GitHub ↗</a>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <img src="assets/transhumans/Waiting.svg" alt="A person waiting — reflecting the patience needed to build StudyGenie" width="280" height="280">
-                </div>
-            </div>
-
-            <!-- Project 02 — SecurePortal (case study) -->
-            <div class="project-row project-row-alt mb-16 reveal" data-delay="100" data-tags="security">
-                <div class="flex justify-center">
-                    <img src="assets/transhumans/Mask.svg" alt="A masked figure — representing the security focus of SecurePortal" width="280" height="280">
-                </div>
-                <div>
-                    <div class="project-number project-number-anim">02</div>
-                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">SecurePortal</h3>
-                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
-                        10+ attack scenarios. Custom SQLi, XSS & brute-force modules. A SOC dashboard that actually works.
-                    </p>
-                    <p class="text-sm mt-1 handwritten" style="color:var(--fg-muted)">
-                        <span class="case-toggle" onclick="this.parentElement.classList.toggle('open');this.nextElementSibling.classList.toggle('open');this.textContent=this.textContent==='▼ Read case study'?'▲ Hide':'▼ Read case study'">▼ Read case study</span>
-                    </p>
-                    <div class="case-detail mt-4 space-y-3" style="color:var(--fg-muted)">
-                        <p class="text-sm"><strong class="font-bold" style="color:var(--fg)">Problem:</strong> University security courses teach theory but rarely let students interact with live attack simulations. SecurePortal bridges that gap with a safe, sandboxed environment.</p>
-                        <p class="text-sm"><strong class="font-bold" style="color:var(--fg)">Approach:</strong> Built custom SQL injection and XSS payload modules in Flask, with a SOC-style dashboard for monitoring simulated attacks in real time.</p>
-                        <p class="text-sm"><strong class="font-bold" style="color:var(--fg)">Hard bug:</strong> The brute-force simulator would lock the test account permanently. Root cause was a missing re-initialization step after each attack reset — fixed by adding a DB seed callback on session teardown.</p>
-                        <p class="text-sm"><strong class="font-bold" style="color:var(--fg)">Outcome:</strong> 10+ attack scenarios running. Used by peers for hands-on security practice. Open-source on GitHub.</p>
-                    </div>
-                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Flask · SQLite · Python · Security</p>
-                    <div class="flex gap-4 mt-6">
-                        <a href="https://secure-student-portal.onrender.com" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
-                        <a href="https://github.com/eswarsamanthula/secure-student-portal" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent3)">GitHub ↗</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 03 — Limitless -->
-            <div class="project-row mb-16 reveal" data-delay="200" data-tags="fullstack">
-                <div>
-                    <div class="project-number project-number-anim">03</div>
-                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Limitless</h3>
-                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
-                        Auth, real-time data, clean UI. First full product from idea to deployment on Vercel.
-                    </p>
-                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Supabase · Vercel · JavaScript</p>
-                    <div class="flex gap-4 mt-6">
-                        <a href="https://applimitlessai.vercel.app" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
-                        <a href="https://github.com/eswarsamanthula/Limitless" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent)">GitHub ↗</a>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <img src="assets/transhumans/Looking Ahead.svg" alt="Looking toward the future — Limitless is my first full product" width="280" height="280">
-                </div>
-            </div>
-
-            <!-- Project 04 — Dormsy -->
-            <div class="project-row project-row-alt mb-16 reveal" data-delay="300" data-tags="fullstack">
-                <div class="flex justify-center">
-                    <img src="assets/transhumans/Pondering.svg" alt="Pondering the complexities of hostel management" width="280" height="280">
-                </div>
-                <div>
-                    <div class="project-number project-number-anim">04</div>
-                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Dormsy</h3>
-                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
-                        Full-stack hostel management system with multi-role access, QR attendance, and Stripe payments.
-                    </p>
-                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: React · Node.js · Supabase · Stripe</p>
-                    <div class="flex gap-4 mt-6">
-                        <a href="https://dormsy-hostel-management-system.vercel.app" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
-                        <a href="https://github.com/eswarsamanthula/Dormsy_Hostel_Management_System" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent2)">GitHub ↗</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 05 — Weather Insight -->
-            <div class="project-row mb-16 reveal" data-delay="400" data-tags="fullstack">
-                <div>
-                    <div class="project-number project-number-anim">05</div>
-                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Weather Insight</h3>
-                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
-                        Clean weather dashboard with real-time data, forecasts, and location-based insights.
-                    </p>
-                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: JavaScript · Weather API · Netlify</p>
-                    <div class="flex gap-4 mt-6">
-                        <a href="https://weather-insight-wed.netlify.app" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
-                        <a href="https://github.com/eswarsamanthula/Weather-Insight-Web" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent)">GitHub ↗</a>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <img src="assets/transhumans/Feliz.svg" alt="Happy about building a weather app" width="280" height="280">
-                </div>
-            </div>
-
-            <!-- Project 06 — Ritual -->
-            <div class="project-row project-row-alt mb-16 reveal" data-delay="500" data-tags="fullstack">
-                <div class="flex justify-center">
-                    <img src="assets/transhumans/Jumping.svg" alt="Jumping into new ideas with Ritual" width="280" height="280">
-                </div>
-                <div>
-                    <div class="project-number project-number-anim">06</div>
-                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Ritual</h3>
-                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
-                        A web app built with a focus on clean UX and fast interactions. Deployed on Vercel.
-                    </p>
-                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: JavaScript · Vercel</p>
-                    <div class="flex gap-4 mt-6">
-                        <a href="https://ritual-cyan.vercel.app" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
-                        <a href="https://github.com/eswarsamanthula/Ritual" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent3)">GitHub ↗</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 07 — Pixel Blaster -->
-            <div class="project-row mb-16 reveal" data-delay="600" data-tags="game">
-                <div>
-                    <div class="project-number project-number-anim">07</div>
-                    <h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Pixel Blaster</h3>
-                    <p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">
-                        Retro-style browser game built with HTML, CSS, and JavaScript. Published on GitHub Pages.
-                    </p>
-                    <p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: HTML · CSS · JavaScript</p>
-                    <div class="flex gap-4 mt-6">
-                        <a href="https://eswarsamanthula.github.io/pixel-blaster-dx" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold">View Live →</a>
-                        <a href="https://github.com/eswarsamanthula/pixel-blaster-dx" target="_blank" class="doodle-button px-5 py-2 text-sm font-bold" style="background:var(--accent)">GitHub ↗</a>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <img src="assets/transhumans/Gamestation.svg" alt="Gaming-themed Pixel Blaster" width="280" height="280">
-                </div>
-            </div>
-        </div>
+<div class="flex flex-wrap gap-2 justify-center mb-10 reveal" id="filter-bar" role="group" aria-label="Filter projects by category">
+<button class="filter-btn active" data-filter="all" aria-pressed="true">All</button><button class="filter-btn" data-filter="web" aria-pressed="false">Web Development</button><button class="filter-btn" data-filter="ai" aria-pressed="false">AI / Machine Learning</button><button class="filter-btn" data-filter="security" aria-pressed="false">Security</button><button class="filter-btn" data-filter="iot" aria-pressed="false">IoT</button><button class="filter-btn" data-filter="software" aria-pressed="false">Software Engineering</button></div>
+<p id="filter-status" class="text-sm text-center" aria-live="polite"></p>
+<div class="project-row mb-16 reveal" data-tags="security ai software"><div><div class="project-number project-number-anim">01</div><h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">THFSA — Transformer-Based Hardware Fingerprint Identification</h3><p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">Research prototype for secure scanner authentication. Fingerprint images are evaluated by CNN, Transformer and hybrid models; a Flask demo combines password, TOTP, user-template matching, scanner verification and HMAC session-key agreement.</p><p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Python · PyTorch · TIMM · EfficientFormer-L1 · Computer Vision · Flask · SQLite · bcrypt · TOTP · HMAC-SHA256</p><details class="mt-3"><summary class="handwritten cursor-pointer">Problem, approach &amp; features</summary><p class="text-sm mt-2" style="color:var(--fg-muted)">Problem: identify the scanner that captured an image. Features: 14 registered architectures; scanner identification and binary verification; MFA flow. Limitation: stored images were used; no physical R307 scanner was connected or tested.</p></details><button type="button" class="filter-btn project-modal-trigger mt-3">More details</button><div class="flex flex-wrap gap-3 mt-5"><a href="https://github.com/eswarsamanthula/Transformer-Based-Hardware-Fingerprint-Identification-for-Secure-Fingerprint-Scanner-Authentication" target="_blank" rel="noopener noreferrer" class="doodle-button px-5 py-2 text-sm font-bold">GitHub ↗</a></div></div><div class="flex justify-center"><img src="assets/transhumans/Mask.svg" alt="Hand-drawn illustration accompanying Transformer-Based Hardware Fingerprint Identification" width="260" height="260" ></div></div>
+<div class="project-row project-row-alt mb-16 reveal" data-tags="iot software"><div class="flex justify-center"><img src="assets/transhumans/Looking Ahead.svg" alt="Hand-drawn illustration accompanying Adaptive Traffic Signal Controller" width="260" height="260" ></div><div><div class="project-number project-number-anim">02</div><h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Adaptive Traffic Signal Controller</h3><p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">An IoT-based simulation that analyses vehicle demand and calculates adaptive signal timing. MQTT feeds Python decision logic; a simulated actuator acknowledges commands; Node-RED and SQLite support the control-room dashboard and history.</p><p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Python · MQTT · Mosquitto · Node-RED · SQLite · JavaScript · Machine Learning · IoT</p><details class="mt-3"><summary class="handwritten cursor-pointer">Problem, approach &amp; features</summary><p class="text-sm mt-2" style="color:var(--fg-muted)">Problem: fixed timing does not respond to changing demand. Features: traffic replay, congestion analysis, bounded green times, actuator acknowledgements, Testing Lab and fixed-time comparison. Limitation: software simulation only; no real traffic lights are controlled.</p></details><button type="button" class="filter-btn project-modal-trigger mt-3">More details</button><div class="flex flex-wrap gap-3 mt-5"><a href="https://github.com/eswarsamanthula/Adaptive_Traffic_Signal_Controller" target="_blank" rel="noopener noreferrer" class="doodle-button px-5 py-2 text-sm font-bold">GitHub ↗</a></div></div></div>
+<div class="project-row mb-16 reveal" data-tags="security ai"><div><div class="project-number project-number-anim">03</div><h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">PRNU Smartphone Authentication</h3><p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">Research implementation inspired by the ABC smartphone authentication protocol. QR challenges lead to phone image capture, PRNU extraction and enrolled-device matching.</p><p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: Python · OpenCV · NumPy · Flask · QR Codes · Digital Image Forensics</p><details class="mt-3"><summary class="handwritten cursor-pointer">Problem, approach &amp; features</summary><p class="text-sm mt-2" style="color:var(--fg-muted)">Problem: check whether a photo came from an enrolled phone camera. Features: PRNU training, challenge-response, mobile upload, forgery/removal checks, PCE evaluation and ROC/statistical visualisations.</p></details><button type="button" class="filter-btn project-modal-trigger mt-3">More details</button><div class="flex flex-wrap gap-3 mt-5"><a href="https://github.com/eswarsamanthula/PRNU-Smartphone-Authentication" target="_blank" rel="noopener noreferrer" class="doodle-button px-5 py-2 text-sm font-bold">GitHub ↗</a></div></div><div class="flex justify-center"><img src="assets/transhumans/Pondering.svg" alt="Hand-drawn illustration accompanying PRNU Smartphone Authentication" width="260" height="260" ></div></div>
+<div class="project-row project-row-alt mb-16 reveal" data-tags="web software"><div class="flex justify-center"><img src="assets/transhumans/Runner.svg" alt="Hand-drawn illustration accompanying Liftly" width="260" height="260" ></div><div><div class="project-number project-number-anim">04</div><h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Liftly</h3><p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">Ride-sharing app connecting drivers and passengers on similar routes. The React/TypeScript client uses an Express API and MongoDB. Repository routes include account flows, ride search and booking, profiles, messaging and ratings.</p><p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: React · Vite · TypeScript · Node.js · Express · MongoDB · JWT</p><details class="mt-3"><summary class="handwritten cursor-pointer">Problem, approach &amp; features</summary><p class="text-sm mt-2" style="color:var(--fg-muted)">Problem: help travellers publish, find and coordinate rides. Features listed reflect implemented screens and API routes in the repository.</p></details><button type="button" class="filter-btn project-modal-trigger mt-3">More details</button><div class="flex flex-wrap gap-3 mt-5"><a href="https://github.com/eswarsamanthula/Liftly-RideShare-Carpooling-Web-App" target="_blank" rel="noopener noreferrer" class="doodle-button px-5 py-2 text-sm font-bold">GitHub ↗</a></div></div></div>
+<div class="project-row mb-16 reveal" data-tags="ai web"><div><div class="project-number project-number-anim">05</div><h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">StudyGenie AI</h3><p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">AI study planner that creates personalised schedules from subjects, deadlines and learning preferences.</p><p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: React · TypeScript · Vite · Gemini AI · Supabase · Tailwind CSS</p><details class="mt-3"><summary class="handwritten cursor-pointer">Problem, approach &amp; features</summary><p class="text-sm mt-2" style="color:var(--fg-muted)">Problem: turn course priorities and due dates into a manageable plan. Features: AI plans, subject prioritisation, scheduling and deadline management.</p></details><button type="button" class="filter-btn project-modal-trigger mt-3">More details</button><div class="flex flex-wrap gap-3 mt-5"><a href="https://github.com/eswarsamanthula/StudyGenie-AI" target="_blank" rel="noopener noreferrer" class="doodle-button px-5 py-2 text-sm font-bold">GitHub ↗</a><a href="https://studygenie-ai.netlify.app/" target="_blank" rel="noopener noreferrer" class="doodle-button px-5 py-2 text-sm font-bold">Live demo →</a></div></div><div class="flex justify-center"><img src="assets/transhumans/Waiting.svg" alt="Hand-drawn illustration accompanying StudyGenie AI" width="260" height="260" ></div></div>
+<div class="project-row project-row-alt mb-16 reveal" data-tags="web software"><div class="flex justify-center"><img src="assets/transhumans/Feliz.svg" alt="Hand-drawn illustration accompanying Dormsy" width="260" height="260" ></div><div><div class="project-number project-number-anim">06</div><h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Dormsy</h3><p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">Hostel management app for accommodation workflows and services, with role-based areas for administrators, wardens and students.</p><p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: React · TypeScript · Supabase · Stripe</p><details class="mt-3"><summary class="handwritten cursor-pointer">Problem, approach &amp; features</summary><p class="text-sm mt-2" style="color:var(--fg-muted)">Problem: coordinate hostel tasks and records. Features documented in the repository include hostel/room records, attendance, complaints, leave, fees and payments. Backend features depend on configured services.</p></details><button type="button" class="filter-btn project-modal-trigger mt-3">More details</button><div class="flex flex-wrap gap-3 mt-5"><a href="https://github.com/eswarsamanthula/Dormsy_Hostel_Management_System" target="_blank" rel="noopener noreferrer" class="doodle-button px-5 py-2 text-sm font-bold">GitHub ↗</a><a href="https://dormsy-hostel-management-system.vercel.app/" target="_blank" rel="noopener noreferrer" class="doodle-button px-5 py-2 text-sm font-bold">Live demo →</a></div></div></div>
+<div class="project-row mb-16 reveal" data-tags="software"><div><div class="project-number project-number-anim">07</div><h3 class="text-3xl md:text-4xl font-bold handwritten mt-2">Design Pattern Case Study</h3><p class="text-base md:text-lg mt-4" style="color:var(--fg-muted)">Academic study of design pattern identification and evolution in a NestJS parking management application.</p><p class="text-sm mt-4 font-medium" style="color:var(--fg-muted)">Tech: NestJS · Java · Python · JavaScript · C++ · UML · PlantUML</p><details class="mt-3"><summary class="handwritten cursor-pointer">Problem, approach &amp; features</summary><p class="text-sm mt-2" style="color:var(--fg-muted)">Features: pattern identification and categorisation, UML/PlantUML diagrams, architecture analysis and cross-language examples where present. Implementations vary by language and pattern.</p></details><button type="button" class="filter-btn project-modal-trigger mt-3">More details</button><div class="flex flex-wrap gap-3 mt-5"><a href="https://github.com/eswarsamanthula/23CSE455_DP_CaseStudy" target="_blank" rel="noopener noreferrer" class="doodle-button px-5 py-2 text-sm font-bold">GitHub ↗</a></div></div><div class="flex justify-center"><img src="assets/transhumans/Roboto.svg" alt="Hand-drawn illustration accompanying Design Pattern Case Study" width="260" height="260" ></div></div>
+<div class="secondary-projects"><details><summary>More things I’ve made <span class="text-base font-normal" style="color:var(--fg-muted)">(SecurePortal, Limitless, Weather Insight, Ritual, Pixel Blaster)</span></summary><div class="mt-4 grid md:grid-cols-2 gap-4">
+<div class="doodle-border p-4"><b>SecurePortal</b><p class="text-sm mt-1">10+ attack scenarios, custom SQL injection and XSS modules, brute-force simulation, and a SOC-style dashboard.</p><a href="https://github.com/eswarsamanthula/secure-student-portal" target="_blank" rel="noopener noreferrer">GitHub ↗</a> · <a href="https://secure-student-portal.onrender.com" target="_blank" rel="noopener noreferrer">Live ↗</a></div>
+<div class="doodle-border p-4"><b>Limitless</b><p class="text-sm mt-1">Authentication and real-time data in a JavaScript application deployed with Supabase and Vercel.</p><a href="https://github.com/eswarsamanthula/Limitless" target="_blank" rel="noopener noreferrer">GitHub ↗</a> · <a href="https://applimitlessai.vercel.app" target="_blank" rel="noopener noreferrer">Live ↗</a></div>
+<div class="doodle-border p-4"><b>Weather Insight</b><p class="text-sm mt-1">Weather dashboard with live data, forecasts, and location-based insights.</p><a href="https://github.com/eswarsamanthula/Weather-Insight-Web" target="_blank" rel="noopener noreferrer">GitHub ↗</a> · <a href="https://weather-insight-wed.netlify.app" target="_blank" rel="noopener noreferrer">Live ↗</a></div>
+<div class="doodle-border p-4"><b>Ritual</b><p class="text-sm mt-1">Web app focused on a clean user experience and quick interactions, deployed on Vercel.</p><a href="https://github.com/eswarsamanthula/Ritual" target="_blank" rel="noopener noreferrer">GitHub ↗</a> · <a href="https://ritual-cyan.vercel.app" target="_blank" rel="noopener noreferrer">Live ↗</a></div>
+<div class="doodle-border p-4"><b>Pixel Blaster</b><p class="text-sm mt-1">Retro-style browser game built with HTML, CSS, and JavaScript, published on GitHub Pages.</p><a href="https://github.com/eswarsamanthula/pixel-blaster-dx" target="_blank" rel="noopener noreferrer">GitHub ↗</a> · <a href="https://eswarsamanthula.github.io/pixel-blaster-dx" target="_blank" rel="noopener noreferrer">Live ↗</a></div>
+</div></details></div>        </div>
     </section>
 
     <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
@@ -884,28 +740,15 @@
                 Currently
                 <span class="doodle-star absolute -right-8 -top-2">✦</span>
             </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="reveal" data-delay="0">
-                    <span class="text-4xl">📚</span>
-                    <h3 class="text-xl font-bold mt-3">Learning</h3>
-                    <p class="mt-2 text-lg" style="color:var(--fg-muted)">Advanced Flask<br/>System Design</p>
-                </div>
-                <div class="reveal" data-delay="100">
-                    <span class="text-4xl">⚡</span>
-                    <h3 class="text-xl font-bold mt-3">Building</h3>
-                    <p class="mt-2 text-lg" style="color:var(--fg-muted)">Limitless<br/>Open-source tools</p>
-                </div>
-                <div class="reveal" data-delay="200">
-                    <span class="text-4xl">🎯</span>
-                    <h3 class="text-xl font-bold mt-3">Looking for</h3>
-                    <p class="mt-2 text-lg" style="color:var(--fg-muted)">Internships<br/>Collaborations</p>
-                </div>
-            </div>
-            <p class="text-sm italic mt-8 reveal" style="color:var(--fg-muted)">What I'm exploring right now — <a href="now/" class="underline underline-offset-2" style="color:var(--fg-muted)">see full /now page →</a></p>
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+<div class="reveal"><h3 class="text-xl font-bold">Studying</h3><p class="mt-2" style="color:var(--fg-muted)">B.Tech Computer Science and Engineering at Amrita Vishwa Vidyapeetham, Amritapuri. Expected graduation: 2027.</p></div>
+<div class="reveal"><h3 class="text-xl font-bold">Exploring</h3><p class="mt-2" style="color:var(--fg-muted)">AI and machine learning, computer vision, cybersecurity, full-stack development, IoT, distributed systems, and software architecture.</p></div>
+<div class="reveal"><h3 class="text-xl font-bold">Building</h3><p class="mt-2" style="color:var(--fg-muted)">Research prototypes and practical software systems.</p></div></div>
+<p class="text-sm italic mt-8 reveal" style="color:var(--fg-muted)"><a href="now/" class="underline">See my /now page →</a></p>
             <div class="mt-6 reveal text-sm" style="color:var(--fg-muted)">
                 <span class="inline-flex items-center gap-1.5">
                     <span>⚡</span>
-                    <span id="gh-activity">Loading GitHub activity...</span>
+                    <a href="https://github.com/eswarsamanthula" target="_blank" rel="noopener noreferrer">Browse my GitHub profile ↗</a>
                 </span>
             </div>
         </div>
@@ -923,16 +766,16 @@
             </div>
             <div class="space-y-6 reveal">
                 <div class="doodle-border p-6" style="background:var(--card-bg)">
-                    <p class="handwritten text-xl font-bold">Shipping Limitless 🚀</p>
-                    <p class="text-sm mt-1" style="color:var(--fg-muted)">June 2026 — Deployed the first full product from idea to Vercel. Auth, real-time data, clean UI. Learning Supabase along the way.</p>
+                    <p class="handwritten text-xl font-bold">Start with a question</p>
+                    <p class="text-sm mt-1" style="color:var(--fg-muted)">I learn by choosing a problem, making a small working version, and then understanding what needs to change.</p>
                 </div>
                 <div class="doodle-border p-6" style="background:var(--card-bg)">
-                    <p class="handwritten text-xl font-bold">Rethinking StudyGenie</p>
-                    <p class="text-sm mt-1" style="color:var(--fg-muted)">May 2026 — 500+ prompt iterations later, the AI workflow pipeline is solid. Adding spaced-repetition scheduling next.</p>
+                    <p class="handwritten text-xl font-bold">Follow the evidence</p>
+                    <p class="text-sm mt-1" style="color:var(--fg-muted)">Projects are a way to test ideas. I try to describe what is implemented and where a prototype has limits.</p>
                 </div>
                 <div class="doodle-border p-6" style="background:var(--card-bg)">
-                    <p class="handwritten text-xl font-bold">Portfolio v2 — Doodle Era</p>
-                    <p class="text-sm mt-1" style="color:var(--fg-muted)">May 2026 — Rewrote the portfolio with Transhumans illustrations, dark mode, and a hand-drawn aesthetic. No frameworks, just HTML/CSS/JS.</p>
+                    <p class="handwritten text-xl font-bold">Keep learning</p>
+                    <p class="text-sm mt-1" style="color:var(--fg-muted)">My work spans software engineering, AI, computer vision, security, and IoT — areas I’m still exploring through coursework and projects.</p>
                 </div>
             </div>
         </div>
@@ -950,34 +793,14 @@
                 <span class="doodle-star absolute -right-4 bottom-0" style="animation-delay:1.5s">✧</span>
             </div>
 
-            <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-8 reveal">
-                <div>
-                    <h3 class="skill-cat">Frontend</h3>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>HTML</div>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>CSS</div>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>JavaScript</div>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><circle cx="16" cy="8" r="1"/><circle cx="10" cy="16" r="1"/></svg>React</div>
-                </div>
-                <div>
-                    <h3 class="skill-cat">Backend</h3>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 4.4-2.8 8.2-6.7 9.6-.5.1-.7-.2-.7-.5v-3.2c0-1-.3-1.7-.7-2 1.5-.2 3-1.5 3-3.5 0-.8-.3-1.5-.8-2 .1-.2.4-1-.2-2 0 0-.7-.2-2.2.8a7.6 7.6 0 0 0-4 0c-1.5-1-2.2-.8-2.2-.8-.6 1-.3 1.8-.2 2-.5.5-.8 1.2-.8 2 0 2 1.5 3.3 3 3.5-.3.3-.6.9-.7 1.4-.6.3-2 .6-2.8-.6 0 0-.5-.9-1.5-1 0 0-1 0-.1.6 0 0 .7.3 1.1 1.6 0 0 .6 2 3.2 1.4v2c0 .3-.2.6-.7.5A10 10 0 0 1 2 12 10 10 0 0 1 12 2z"/></svg>Python</div>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Flask</div>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M16 8l-4 4m0 0l-4-4m4 4v8"/></svg>Node.js</div>
-                </div>
-                <div>
-                    <h3 class="skill-cat">Tools</h3>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07-7.07l-1.41 1.41M6.34 17.66l-1.41 1.41M17.66 6.34l1.41-1.41M6.34 6.34L4.93 4.93"/></svg>Git</div>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c-4 0-7 3-7 7v6c0 4 3 7 7 7s7-3 7-7V9c0-4-3-7-7-7z"/><path d="M9 9h6"/><path d="M9 13h6"/></svg>Supabase</div>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4v14h14v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Figma</div>
-                </div>
-                <div>
-                    <h3 class="skill-cat">Interests</h3>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 4.4-2.8 8.2-6.7 9.6-.5.1-.7-.2-.7-.5v-3.2c0-1-.3-1.7-.7-2 1.5-.2 3-1.5 3-3.5 0-.8-.3-1.5-.8-2 .1-.2.4-1-.2-2 0 0-.7-.2-2.2.8a7.6 7.6 0 0 0-4 0c-1.5-1-2.2-.8-2.2-.8-.6 1-.3 1.8-.2 2-.5.5-.8 1.2-.8 2 0 2 1.5 3.3 3 3.5-.3.3-.6.9-.7 1.4-.6.3-2 .6-2.8-.6 0 0-.5-.9-1.5-1 0 0-1 0-.1.6 0 0 .7.3 1.1 1.6 0 0 .6 2 3.2 1.4v2c0 .3-.2.6-.7.5A10 10 0 0 1 2 12 10 10 0 0 1 12 2z"/></svg>AI / ML</div>
-                    <div class="skill-item skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/></svg>Cybersecurity</div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-8 reveal">
+<div><h3 class="skill-cat">Programming</h3><p>Python · C · C++ · Java · JavaScript · TypeScript · SQL</p></div>
+<div><h3 class="skill-cat">Web Development</h3><p>HTML · CSS · React · Vite · Node.js · Express · Flask · Tailwind CSS</p></div>
+<div><h3 class="skill-cat">AI / Machine Learning</h3><p>PyTorch · OpenCV · TIMM · NumPy · Scikit-learn · Computer Vision · Transformer Architectures</p></div>
+<div><h3 class="skill-cat">Databases</h3><p>MySQL · SQLite · MongoDB · Supabase</p></div>
+<div><h3 class="skill-cat">Tools &amp; Technologies</h3><p>Git · GitHub · Docker · MQTT · Mosquitto · Node-RED · VS Code · Playwright</p></div></div>
+</div>
+</section>
 
     <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
 
@@ -998,15 +821,13 @@
                 <div class="contact-editorial">
                     <div class="contact-left">
                         <p class="text-lg reveal" style="color:var(--fg-muted)">
-                            Open to internships,<br/>
-                            collaborations,<br/>
-                            and interesting projects.
+                            I’m happy to hear about thoughtful projects, questions, and opportunities to learn together.
                         </p>
                         <p class="mt-6 handwritten text-2xl font-bold reveal" style="color:var(--fg-muted)">— Eswar 👋</p>
 
                         <div class="mt-6 space-y-3 text-sm reveal" style="color:var(--fg-muted); display:flow-root">
                             <img src="assets/transhumans/Gamestation.svg" alt="" class="runner-float" width="220" height="220">
-                            <p><span class="text-base">🟢</span> Available for internships</p>
+                            <p><span class="text-base">🟢</span> Reach out by email</p>
                             <div class="flex items-center gap-2 mt-3">
                                 <a href="mailto:eswarsamanthula@gmail.com" class="doodle-button px-4 py-1.5 text-sm font-bold" style="background:var(--accent)">Email Me →</a>
                                 <button id="copyEmailBtn" class="doodle-button px-3 py-1.5 text-sm font-bold relative" aria-label="Copy email to clipboard" style="background:var(--accent2)">Copy</button>
@@ -1014,11 +835,11 @@
                             </div>
                             <div>
                                 <p class="font-bold handwritten text-lg mt-3">📚 Learning</p>
-                                <p class="ml-1">System Design</p>
+                                <p class="ml-1">AI, security, and software systems</p>
                             </div>
                             <div>
                                 <p class="font-bold handwritten text-lg mt-3">⚡ Building</p>
-                                <p class="ml-1">Limitless AI</p>
+                                <p class="ml-1">Research prototypes and practical software</p>
                             </div>
                             <div>
                                 <p class="font-bold handwritten text-lg mt-3">🎯 Open to</p>
@@ -1044,7 +865,7 @@
                             <button id="cf-send" type="submit" class="doodle-button w-full py-3 font-bold text-base">
                                 Send Message →
                             </button>
-                            <p id="cf-status" class="text-sm hidden font-medium" style="color:var(--fg-muted)"></p>
+                            <p id="cf-status" role="status" aria-live="polite" class="text-sm hidden font-medium" style="color:var(--fg-muted)"></p>
                         </form>
                     </div>
                 </div>
@@ -1052,38 +873,13 @@
         </div>
     </section>
 
-    <!-- ═══════ TESTIMONIALS ═══════ -->
-    <div class="doodle-divider">✦ ✦ ✦ ✦ ✦</div>
-    <section class="py-14" style="background:var(--bg)">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold handwritten reveal mb-10">Words</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="doodle-border p-6 reveal" style="background:var(--card-bg)">
-                    <p class="text-sm italic" style="color:var(--fg-muted)">"Eswar builds things that actually work — not just prototypes. His ability to ship end-to-end features independently is rare for his stage."</p>
-                    <p class="text-xs mt-3 font-bold" style="color:var(--fg-muted); opacity:0.6">— Peer, Amrita CSE</p>
-                </div>
-                <div class="doodle-border p-6 reveal" style="background:var(--card-bg)" data-delay="100">
-                    <p class="text-sm italic" style="color:var(--fg-muted)">"Always curious, always building. The kind of developer who reads the docs, breaks things, and fixes them better."</p>
-                    <p class="text-xs mt-3 font-bold" style="color:var(--fg-muted); opacity:0.6">— Collaborator, Open Source</p>
-                </div>
-                <div class="doodle-border p-6 reveal" style="background:var(--card-bg)" data-delay="200">
-                    <p class="text-sm italic" style="color:var(--fg-muted)">"From AI study tools to security dashboards — Eswar's range is impressive. And he documents everything."</p>
-                    <p class="text-xs mt-3 font-bold" style="color:var(--fg-muted); opacity:0.6">— Mentor, University Project Lab</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ── Project detail modal ── -->
-    <div id="projectModal" role="dialog" aria-modal="true" aria-label="Project details">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-            <h3 id="modalTitle" class="text-3xl font-bold handwritten"></h3>
-            <p id="modalDesc" class="text-base mt-4" style="color:var(--fg-muted)"></p>
-            <p id="modalTech" class="text-sm mt-3 font-medium" style="color:var(--fg-muted)"></p>
-            <div id="modalLinks" class="flex gap-4 mt-6"></div>
-        </div>
-    </div>
+    <div id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true" tabindex="-1">
+<div class="modal-content"><button class="modal-close" id="modalClose" aria-label="Close project details">&times;</button>
+<h3 id="modalTitle" class="text-3xl font-bold handwritten"></h3>
+<p id="modalDesc" class="text-base mt-4" style="color:var(--fg-muted)"></p>
+<p id="modalDetails" class="text-sm mt-3" style="color:var(--fg-muted)"></p>
+<p id="modalTech" class="text-sm mt-3 font-medium" style="color:var(--fg-muted)"></p></div></div>
 
     <!-- ═══════ FOOTER ═══════ -->
     <footer class="py-10 text-center" style="background:var(--card-bg); border-top:1px solid var(--border);">
@@ -1091,14 +887,14 @@
             Still learning.<br/>Still building.<br/>Still curious.
         </p>
         <div class="flex items-center justify-center gap-4 mt-6 mb-4">
-            <a href="https://linkedin.com/in/eswarsamanthula" target="_blank" aria-label="LinkedIn" style="color:var(--fg-muted)">
+            <a href="https://linkedin.com/in/eswarsamanthula" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="color:var(--fg-muted)">
                 <svg focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke-linecap="round" stroke-linejoin="round"/>
                     <rect x="2" y="9" width="4" height="12" stroke-linecap="round" stroke-linejoin="round"/>
                     <circle cx="4" cy="4" r="2"/>
                 </svg>
             </a>
-            <a href="https://github.com/eswarsamanthula" target="_blank" aria-label="GitHub" style="color:var(--fg-muted)">
+            <a href="https://github.com/eswarsamanthula" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="color:var(--fg-muted)">
                 <svg focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -1109,7 +905,7 @@
                     <polyline points="22,6 12,13 2,6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </a>
-            <a href="https://hub.docker.com/u/eswarsamanthula" target="_blank" aria-label="Docker Hub" style="color:var(--fg-muted)">
+            <a href="https://hub.docker.com/u/eswarsamanthula" target="_blank" rel="noopener noreferrer" aria-label="Docker Hub" style="color:var(--fg-muted)">
                 <svg focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="1"  y="9" width="4" height="4" rx="0.5" stroke-linecap="round"/>
                     <rect x="6"  y="9" width="4" height="4" rx="0.5" stroke-linecap="round"/>
@@ -1221,6 +1017,8 @@ mobileBtn.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden', isOpen);
     menuOpen.classList.toggle('hidden', !isOpen);
     menuClose.classList.toggle('hidden', isOpen);
+    mobileBtn.setAttribute('aria-expanded', String(!isOpen));
+    mobileBtn.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
 });
 
 mobileMenu.querySelectorAll('a').forEach(a => {
@@ -1229,6 +1027,8 @@ mobileMenu.querySelectorAll('a').forEach(a => {
         mobileMenu.classList.add('hidden');
         menuOpen.classList.remove('hidden');
         menuClose.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+        mobileBtn.setAttribute('aria-label', 'Open navigation menu');
     });
 });
 
@@ -1256,26 +1056,6 @@ window.addEventListener('scroll', () => {
 
 // ── Intersection observers ────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-
-        // ── "Now" data from JSON ──
-        fetch('data/now.json').then(r => r.json()).then(data => {
-            const cols = document.querySelectorAll('#currently .grid > div');
-            if (cols.length === 3 && data.learning) {
-                cols[0].querySelector('p').innerHTML = data.learning.join('<br/>');
-                cols[1].querySelector('p').innerHTML = data.building.join('<br/>');
-                cols[2].querySelector('p').innerHTML = data.lookingFor.join('<br/>');
-            }
-        }).catch(() => {});
-
-        // ── GitHub activity ──
-        fetch('https://api.github.com/users/eswarsamanthula/repos?per_page=5&sort=updated')
-            .then(r => r.json())
-            .then(repos => {
-                if (repos && repos.length) {
-                    const el = document.getElementById('gh-activity');
-                    el.textContent = `${repos.length} public repos — latest: ${repos[0].name}`;
-                }
-            }).catch(() => {});
 
         const revealObs = new IntersectionObserver((entries) => {
             entries.forEach(e => {
@@ -1308,60 +1088,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.3 });
     sections.forEach(s => navObs.observe(s));
 
-    // ── Project modal ──
+    // ── Project details modal ──
     const modal = document.getElementById('projectModal');
-    const mTitle = document.getElementById('modalTitle');
-    const mDesc = document.getElementById('modalDesc');
-    const mTech = document.getElementById('modalTech');
-    const mLinks = document.getElementById('modalLinks');
-    document.querySelectorAll('.project-row[data-tags] .project-number').forEach(num => {
-        const row = num.closest('.project-row');
-        const img = row.querySelector('img');
-        if (img) img.style.cursor = 'pointer';
-        [num, img].forEach(el => {
-            if (el) el.addEventListener('click', () => {
-                mTitle.textContent = row.querySelector('h3').textContent;
-                const descs = row.querySelectorAll('p[style*="color:var(--fg-muted)"]');
-                mDesc.textContent = descs.length ? descs[0].textContent : '';
-                const tech = row.querySelector('p.font-medium');
-                mTech.textContent = tech ? tech.textContent : '';
-                mLinks.innerHTML = row.querySelector('.flex.gap-4').innerHTML;
-                modal.classList.add('open');
-            });
+    let modalTrigger = null;
+    function closeProjectModal() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        modalTrigger?.focus();
+    }
+    document.querySelectorAll('.project-modal-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const row = trigger.closest('.project-row');
+            modalTrigger = trigger;
+            document.getElementById('modalTitle').textContent = row.querySelector('h3').textContent;
+            document.getElementById('modalDesc').textContent = row.querySelector('p[style*="color:var(--fg-muted)"]').textContent;
+            document.getElementById('modalDetails').textContent = row.querySelector('details p').textContent;
+            document.getElementById('modalTech').textContent = row.querySelector('p.font-medium').textContent;
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.getElementById('modalClose').focus();
         });
     });
-    document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('open'); });
+    document.getElementById('modalClose').addEventListener('click', closeProjectModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeProjectModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeProjectModal(); });
 
     // ── Project filter ──
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectRows = document.querySelectorAll('.project-row[data-tags]');
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            if (!btn.dataset.filter || btn.id === 'shuffleBtn') return;
+            if (!btn.dataset.filter) return;
             const tag = btn.dataset.filter;
-            filterBtns.forEach(b => b.classList.remove('active'));
+            filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
             btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
             projectRows.forEach(row => {
                 const tags = (row.dataset.tags || '').split(' ');
                 const match = tag === 'all' || tags.includes(tag);
                 row.classList.toggle('filter-hidden', !match);
                 if (match) { row.classList.add('reveal'); revealObs.observe(row); }
             });
+            document.getElementById('filter-status').textContent = Array.from(projectRows).filter(row => !row.classList.contains('filter-hidden')).length + ' featured projects shown.';
         });
     });
 
-    // ── Shuffle projects ──
-    document.getElementById('shuffleBtn').addEventListener('click', () => {
-        const parent = document.getElementById('projects').querySelector('.max-w-6xl');
-        const rows = [...parent.querySelectorAll('.project-row[data-tags]')];
-        for (let i = rows.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            parent.appendChild(rows[j]);
-            parent.appendChild(rows[i]);
-        }
-    });
 });
 
 // ── Preloader ─────────────────────────────────────────
@@ -1469,14 +1240,14 @@ keyCheat.addEventListener('click', e => { if (e.target === keyCheat) keyCheat.cl
 
 // ── Service worker registration ─────────────────────
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
+    navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
 // ── EmailJS ──────────────────────────────────────────
 // Verify EmailJS dashboard has domain restriction + rate limiting enabled,
 // since service ID and public key are visible in the client-side source.
 (function() {
-    emailjs.init('q8c1AgavyQtt8aPYS');
+    if (window.emailjs) emailjs.init('q8c1AgavyQtt8aPYS');
 })();
 
 document.getElementById('contact-form').addEventListener('submit', function(e) {
@@ -1487,12 +1258,22 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     btn.textContent = 'Sending…';
     btn.disabled = true;
     status.classList.add('hidden');
+    if (!this.reportValidity()) { btn.disabled = false; btn.textContent = orig; return; }
 
     const params = {
         user_name: document.getElementById('cf-name').value,
         user_email: document.getElementById('cf-email').value,
+        reply_to: document.getElementById('cf-email').value,
         message: document.getElementById('cf-message').value
     };
+    if (!window.emailjs) {
+        status.textContent = 'Email service unavailable. Please email eswarsamanthula@gmail.com directly.';
+        status.className = 'text-sm font-medium';
+        status.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = orig;
+        return;
+    }
     emailjs.send('service_4i3nbxz', 'template_gaz6a83', params)
         .then(() => {
             status.textContent = '✅ Message sent! I\'ll get back to you soon.';
@@ -1503,7 +1284,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
         })
         .catch((err) => {
             console.error('EmailJS error:', err);
-            status.textContent = '⚠️ ' + (err.text || 'Something went wrong. Try emailing me directly.');
+            status.textContent = '⚠️ Message could not be sent. Please email eswarsamanthula@gmail.com directly.';
             status.className = 'text-sm font-medium';
             status.style.color = 'var(--fg-muted)';
             status.classList.remove('hidden');

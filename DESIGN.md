@@ -349,11 +349,11 @@ The system uses two fonts for a clear emotional split: **Caveat** for the "handm
 
 ### Sections (in order)
 1. **Hero** — Full-screen intro with 40/60 text/illustration split. Astro SVG at 420px width.
-2. **About** — Timeline format (2015–2022, 2023, 2024, 2025–Now) with Runner + Coffee SVGs.
+2. **About** — Timeline format (2023–2027) with Runner + Coffee SVGs.
 3. **Statement** — Dramatic centered statement "I learn by building." with parallax effect.
-4. **Projects** — 7 numbered rows (StudyGenie, SecurePortal, Limitless, Dormsy, Weather Insight, Ritual, Pixel Blaster). Each has description + tech stack + live/GitHub links + character illustration.
+4. **Projects** — 7 numbered featured rows (THFSA, Adaptive Traffic Signal Controller, PRNU Smartphone Authentication, Liftly, StudyGenie AI, Dormsy, Design Pattern Case Study), with the five earlier projects retained in a secondary disclosure.
 5. **Currently** — 3-column grid (Learning, Building, Looking for).
-6. **Skills** — 4-column grid (Frontend, Backend, Tools, Interests).
+6. **Skills** — grouped list for programming, web development, AI/ML, databases, and tools.
 7. **Contact** — Editorial float layout: text + status block with Gamestation SVG floated right via `shape-outside`.
 8. **Footer** — Signature text + social links + credits.
 
@@ -501,12 +501,4 @@ Theme preference is persisted in `localStorage('theme')`. The toggle button swap
 
 ## Project List
 
-| # | Name | Tech | Live | GitHub |
-|---|---|---|---|---|
-| 01 | StudyGenie | Flask · OpenAI · SQLite | studygenie-ai.netlify.app | StudyGenie-AI |
-| 02 | SecurePortal | Flask · SQLite · Python · Security | secure-student-portal.onrender.com | secure-student-portal |
-| 03 | Limitless | Supabase · Vercel · JavaScript | applimitlessai.vercel.app | Limitless |
-| 04 | Dormsy | React · Node.js · Supabase · Stripe | dormsy-hostel-management-system.vercel.app | Dormsy_Hostel_Management_System |
-| 05 | Weather Insight | JavaScript · Weather API · Netlify | weather-insight-wed.netlify.app | Weather-Insight-Web |
-| 06 | Ritual | JavaScript · Vercel | ritual-cyan.vercel.app | Ritual |
-| 07 | Pixel Blaster | HTML · CSS · JavaScript | eswarsamanthula.github.io/pixel-blaster-dx | pixel-blaster-dx |
+The main projects section presents seven numbered featured projects in alternating rows: THFSA, Adaptive Traffic Signal Controller, PRNU Smartphone Authentication, Liftly, StudyGenie AI, Dormsy, and Design Pattern Case Study. SecurePortal, Limitless, Weather Insight, Ritual, and Pixel Blaster remain in a secondary disclosure. Category filters cover web development, AI / machine learning, security, IoT, and software engineering.
