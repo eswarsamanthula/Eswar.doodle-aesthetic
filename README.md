@@ -10,7 +10,7 @@ No build step is required. From this folder, run:
 python -m http.server 8000
 ~~~
 
-Open http://localhost:8000. An HTTP server supports the /now page and service worker. The included resume.pdf and assets/Eswar_Atomberg_Portfolio.pdf are downloadable.
+Open http://localhost:8000. An HTTP server supports the service worker. The included resume.pdf and assets/Eswar_Atomberg_Portfolio.pdf are downloadable.
 
 ## Featured projects
 
@@ -47,8 +47,6 @@ Existing EmailJS identifiers are retained. Check domain restrictions and rate li
 ## Project structure
 
 - index.html — main portfolio, styles, and vanilla JavaScript
-- now/index.html — compact /now page
-- data/now.json — /now page content
 - assets/transhumans/ — character illustrations
 - resume.pdf — downloadable resume
 - assets/Eswar_Atomberg_Portfolio.pdf — Atomberg CMF Design Intern application portfolio
@@ -62,7 +60,7 @@ Target repository: https://github.com/eswarsamanthula/Eswar.doodle-aesthetic (br
 git status
 git diff
 git diff --check
-git add .gitignore index.html README.md DESIGN.md data/now.json now/index.html manifest.json robots.txt sitemap.xml sw.js
+git add .gitignore index.html README.md DESIGN.md manifest.json robots.txt sitemap.xml sw.js
 git commit -m "Upgrade portfolio with 2026 projects and journey"
 git push -u origin master
 ~~~

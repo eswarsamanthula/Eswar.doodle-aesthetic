@@ -2,8 +2,6 @@ const CACHE = 'eswar-portfolio-v3';
 const ASSETS = [
   './',
   'index.html',
-  'now/',
-  'now/index.html',
   'assets/favicon.svg',
   'assets/Eswar_Atomberg_Portfolio.pdf',
   'assets/transhumans/Astro.svg',
@@ -18,7 +16,6 @@ const ASSETS = [
   'assets/transhumans/Feliz.svg',
   'assets/transhumans/Jumping.svg',
   'assets/transhumans/Gamestation.svg',
-  'data/now.json',
   'manifest.json'
 ];
 
