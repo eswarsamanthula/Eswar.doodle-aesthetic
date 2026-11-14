@@ -2,6 +2,30 @@
 
 A personal portfolio built with vanilla HTML, CSS, and JavaScript. It keeps the paper-like canvas, Caveat headings, DM Sans interface, Transhumans doodles, numbered alternating project rows, and hand-drawn buttons.
 
+## About
+
+Website: [eswarsamanthula.dpdns.org](http://eswarsamanthula.dpdns.org/)
+
+*No repository description or topics provided.*
+
+### Resources
+
+[Readme](https://github.com/eswarsamanthula/Eswar.doodle-aesthetic#readme-ov-file)
+
+[Activity](https://github.com/eswarsamanthula/Eswar.doodle-aesthetic/activity)
+
+### Stars
+
+[**1** star](https://github.com/eswarsamanthula/Eswar.doodle-aesthetic/stargazers)
+
+### Watchers
+
+[**0** watching](https://github.com/eswarsamanthula/Eswar.doodle-aesthetic/watchers)
+
+### Forks
+
+[**0** forks](https://github.com/eswarsamanthula/Eswar.doodle-aesthetic/forks)
+
 ## Run locally
 
 No build step is required. From this folder, run:
